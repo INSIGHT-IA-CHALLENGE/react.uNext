@@ -1,0 +1,14 @@
+.container{
+    width: 100vw;
+    height: 80vh;
+    background-color: var(--cinza2);
+    z-index: 1;
+}
+
+.botoes{
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

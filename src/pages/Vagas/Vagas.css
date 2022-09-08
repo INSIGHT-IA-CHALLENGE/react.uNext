@@ -1,0 +1,39 @@
+.fi-sliders{
+    color: var(--cinza2);
+    position: absolute;
+    right: 20px;
+    top: calc(10vh / 2);
+    font-size: 25px;
+    z-index: 3;
+    cursor: pointer;
+    background-color: var(--cor2);
+    padding: 5px;
+    border-radius: 5px;
+    transform: translateY(-50%);
+}
+
+.vagas{
+    width: 100%;
+    height: 80vh;
+    padding: 25px 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow-x: auto;
+}
+
+.vagas::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: var(--cor1);
+}
+
+.vagas::-webkit-scrollbar {
+    width: 8px;
+}
+
+.vagas::-webkit-scrollbar-thumb {
+    background-color: var(--cor2);
+    border-radius: 50px;
+}
+

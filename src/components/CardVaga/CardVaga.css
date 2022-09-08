@@ -1,0 +1,153 @@
+:root{
+    --barra1: #ff4849;
+    --barra2: #ffc046;
+    --barra3: #4891fe;
+
+    --progresso1: #ffa9a9;
+    --progresso2: #ffe6b4;
+    --progresso3: #a6c9ff;
+}
+
+.vagas__vaga{
+    height: 400px;
+    display: flex;
+    width: 300px;
+    min-width: 300px;
+    margin: 0 15px;
+    border-radius: 10px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    background-color: var(--cor5);
+    transition: box-shadow 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+} 
+
+.vagas__vaga:hover{
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+}
+
+.vaga__title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    position: relative;
+}
+
+.vaga__title > img{
+    max-width: 70px;
+    height: 70px;
+    border-radius: 50px;
+}
+
+.vaga__title > span{
+    font-weight: 700;
+    font-family: var(--poppins);
+    position: absolute;
+    font-size: 12px;
+    width: calc(50% - 40px);
+    text-align: center;
+    color: var(--cinza5);
+}
+
+.vaga__title > span:nth-child(1){
+    left: 0;
+}
+
+.vaga__title > span:nth-child(3){
+    right: 0;
+}
+
+.vaga__conteudo{
+    max-height: 230px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.vaga__conteudo > h1{
+    font-family: var(--poppins);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 22px;
+    text-align: center;
+}
+
+.vaga__conteudo > p{
+    font-size: 12px;
+    font-family: var(--poppins);
+    font-weight: 600;
+    color: var(--cinza5);
+    text-align: justify;
+    margin: 5px 0;
+}
+
+.vaga__conteudo > p > span{
+    font-size: 12px;
+    font-family: var(--poppins);
+    font-weight: 700;
+    color: #000;
+}
+
+.vaga__compatibilidade{
+    width: 100%;
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    padding: 0 15px;
+}
+
+.vaga__compatibilidade > h1{
+    font-size: 12px;
+    font-family: var(--poppins);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #000;
+    text-align: center;
+    position: relative;
+}
+
+.vaga__compatibilidade > h1::before{
+    content:"\e978";
+    font-family: var(--icon);
+    position: absolute;
+    left: 15px;
+    bottom: 3px;
+    color: var(--barra3);
+}
+
+.vaga__compatibilidade > h1::after{
+    content:"\e9c0";
+    font-family: var(--icon);
+    position: absolute;
+    right: 15px;
+    bottom: 3px;
+    color: var(--barra1);
+}
+
+.compatibilidade__match{
+    height: 40px;
+    width: 100%;
+    background-color: var(--cinza2);
+    border-radius: 50px;
+    position: relative;
+}
+
+.match__level{
+    position: absolute;
+    height: 40px;
+    border-radius: 50px;
+}
+
+.match__brilho{
+    position: absolute;
+    height: 10px;
+    width: calc(15% - 30px);
+    border-radius: 50px;
+    top: 7px;
+    margin-left: 15px;
+}

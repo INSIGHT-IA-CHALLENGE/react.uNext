@@ -1,0 +1,132 @@
+@media (max-width:860px) {
+
+    /*BARRA DO MENU*/
+    .nav-home {
+        flex-direction: column;
+        position: fixed;
+        height: 55px;
+    }
+    
+    .nav-home.ativo{
+        box-shadow: 0px 3px 50px 0px rgba(0, 0, 0, 0.6);
+        height: 400px;
+    }
+    /*FIM BARRA DO MENU*/
+
+
+    /*LOGO*/
+    .logo{
+        display: flex;
+        align-items: center;
+        width: 100vw;
+        justify-content: space-between;
+        padding: 0 30px;
+        position: absolute;
+        top: 10px;
+    }
+    
+    .logo img{
+        height: 30px;
+    }
+    /*FIM LOGO*/
+
+
+    /*MENU HAMBURGUER*/
+    .hamburguer{
+        height: 25px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .hamburguer span{
+        display: block;
+    }
+    
+    .hamburguer span::before{
+        display: block;
+    }
+    
+    .hamburguer span::after{
+        display: block;
+    }
+    /*FIM MENU HAMBURGUER*/
+
+
+    /*OPÇÕES DO MENU*/
+    .itens-menu{
+        flex-direction: column;
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    .nav-home.ativo .itens-menu{
+        height: auto;
+        opacity: 1;
+        visibility: visible;
+        transition: ease-in .5s;
+    }
+    /*FIM OPÇÕES DO MENU*/
+
+
+    /*BOTÕES*/
+    .nav-home .btn-quadrado{
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .nav-home.ativo .btn-quadrado{
+        display: block;
+        bottom: 20px;
+        opacity: 1;
+        visibility: visible;
+        transition: ease-in .5s;
+    }
+    /*FIM BOTÕES*/
+
+    /*SERVICOS*/
+    .card{
+        margin: 20px 5%;
+    }
+
+    .accordion__content{
+        padding: 20px 20px;
+    }
+
+    .form{
+        width: 100%;
+    }
+    /*FIM SERVICOS*/
+
+    /*CONTATO*/
+    iframe{
+        margin: 50px 0 15px 0;
+        width: 100%;
+        height: 400px;
+    }
+
+    .contatos-infos{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .contatos-infos__item{
+        margin-top: 15px;
+    }
+
+    .form__group.col-6{
+        width: 100%;
+    }
+    /*FIM CONTATO*/
+
+    /*TEXTOS GLOBAIS*/
+    .main-home  h3{
+        color: var(--cinza4);
+        font-family: var(--roboto);
+        font-weight: 100;
+        font-size: 22px;
+        padding: 0 10vw;
+    }
+    /*FIM TEXTOS GLOBAIS*/
+}

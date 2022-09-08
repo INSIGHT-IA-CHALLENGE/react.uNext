@@ -1,0 +1,46 @@
+.perfil{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px 2%;
+}
+
+.perfil__header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.perfil__header > img{
+    height: 130px;
+    width: 130px;
+    object-fit: cover;
+    border-radius: 100px;
+    border: 3px solid var(--cor2);
+}
+
+.perfil__header > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.perfil__header > div > h1{
+    font-size: 32px;
+    font-weight: 700;
+    font-family: var(--poppins);
+}
+
+.perfil__header > div > h3{
+    font-size: 15px;
+    font-weight: 400;
+    font-family: var(--poppins);
+    color: var(--cinza5);
+}
+
+@media (max-width:860px){
+    .perfil__header > div > h1{
+        font-size: 20px;
+    }
+}
