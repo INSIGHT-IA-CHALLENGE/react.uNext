@@ -8,7 +8,6 @@ import '../../styles/Default.css'
 
 function Home() {
 
-    var $menu
     var $nav
     var $itensMenu
 

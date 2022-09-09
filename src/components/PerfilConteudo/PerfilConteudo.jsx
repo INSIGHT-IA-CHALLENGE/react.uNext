@@ -38,7 +38,8 @@ function PerfilConteudo(props) {
                     props.skills.map((skill, i) => (
                         <div className="conteudo__item" key={i}>
                             <h1>{skill.descricao}</h1>
-                            <h3>Nível de conhecimento: <span className='nivel'>{skill.nivel}</span></h3>
+                            {skill.hardSkill.toString() === 'true' && <h3>Nível de conhecimento: <span className='nivel'>{skill.nivel}</span></h3>}
+                            {skill.hardSkill.toString() === 'false' && <h3>Soft Skill</h3>}
                         </div>
                     ))
                 )

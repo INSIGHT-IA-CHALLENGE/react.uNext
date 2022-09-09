@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Header from './components/Header/Header';
-import TabMenu from './components/TabMenu/TabMenu';
 import Cadastro from './pages/Cadastro/Cadastro';
+import Candidatura from './pages/Candidatura/Candidatura';
+import Candidaturas from './pages/Candidaturas/Candidaturas';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Notificacoes from './pages/Notificacoes/Notificacoes';
@@ -20,12 +20,16 @@ export default function MyRoutes() {
         <Route path='/cadastro' element={<Cadastro />} />
         <Route path='/recuperarSenha' element={<RecuperarSenha />} />
 
+
         <Route path='/vagas' element={<Vagas />} />
         <Route path='/vagas/:idVaga' element={<Vaga />} />
 
         <Route path='/perfil/:idUser' element={<Perfil />} />
 
         <Route path='/notificacoes' element={<Notificacoes />} />
+
+        <Route path='/candidaturas' element={<Candidaturas />} />
+        <Route path='/candidaturas/:idCandidatura' element={<Candidatura />} />
       </Routes>
     </BrowserRouter>
   )

@@ -1,0 +1,76 @@
+.candidaturas__candidatura{
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.15);
+    background-color: var(--cor5);
+    border-radius: 10px;
+    width: calc(100vw - 15px);
+    max-width: 350px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.candidaturas__candidatura > img{
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 120px;
+    margin-right: 10px;
+}
+
+.candidaturas__candidatura > .candidatura__infos > h1{
+    color: var(--cor1);
+    font-family: var(--poppins);
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+.candidaturas__candidatura > .candidatura__infos > h3{
+    font-weight: 500;
+    margin-bottom: 3px;
+    font-size: 18px;
+    color: var(--cinza5);
+}
+
+.candidaturas__candidatura > .candidatura__infos > strong{
+    font-weight: 500;
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 16px;
+}
+
+.candidaturas__candidatura > .candidatura__infos > strong.em_andamento{
+    color: var(--cor5);
+    background-color: var(--cinza5);
+}
+
+.candidaturas__candidatura > .candidatura__infos > strong.reprovado{
+    color: darkred;
+    background-color: lightcoral;
+}
+
+.candidaturas__candidatura > .candidatura__infos > strong.aprovado{
+    color: darkgreen;
+    background-color: lightgreen;
+}
+
+@media (max-width: 700px) {
+    .candidaturas__candidatura > .candidatura__infos > h1{
+        font-size: 18px;
+    }
+    
+    .candidaturas__candidatura > .candidatura__infos > h3{
+        font-size: 14px;
+    }
+    
+    .candidaturas__candidatura > .candidatura__infos > h6{
+        font-size: 12px;
+    }
+    
+    .candidaturas__candidatura > .candidatura__infos > strong{
+        font-size: 10px;
+    }
+}

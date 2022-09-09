@@ -51,19 +51,39 @@ function Perfil() {
             }],
             skills: [{
                 descricao: 'HTML',
-                nivel: 8
+                nivel: 8,
+                hardSkill: true,
+                softSkill: false
             }, {
                 descricao: 'CSS',
-                nivel: 8
+                nivel: 8,
+                hardSkill: true,
+                softSkill: false
             }, {
                 descricao: 'JAVA',
-                nivel: 7
+                nivel: 7,
+                hardSkill: true,
+                softSkill: false
             }, {
                 descricao: 'Oracle DB',
-                nivel: 5
+                nivel: 5,
+                hardSkill: true,
+                softSkill: false
             }, {
                 descricao: 'JavaScript',
-                nivel: 9
+                nivel: 9,
+                hardSkill: true,
+                softSkill: false
+            },{
+                descricao: 'Trabalho em equipe',
+                nivel: 0,
+                hardSkill: false,
+                softSkill: true
+            },{
+                descricao: 'Boa comunicação',
+                nivel: 0,
+                hardSkill: false,
+                softSkill: true
             }]
         }
 

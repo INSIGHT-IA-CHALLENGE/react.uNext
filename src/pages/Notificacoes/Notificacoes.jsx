@@ -16,7 +16,7 @@ function Notificacoes() {
             empresa: 'FIAP',
             cargo: 'Estágio em desenvolvimento',
             descricao: 'O período de candidatura para está vaga foi encerrado, aguarde novas noticias.',
-            data: '08/09/2022',
+            data: '09/09/2022',
             vista: false,
         }, {
             tipo: 'Aprovado',

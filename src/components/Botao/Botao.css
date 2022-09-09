@@ -68,3 +68,9 @@
     color: darkred;
     background-color: lightcoral;
 }
+
+@media (max-width:860px){
+    .btn{
+        font-size: 12px;
+    }
+}

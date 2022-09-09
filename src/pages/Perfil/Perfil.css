@@ -17,6 +17,8 @@
     object-fit: cover;
     border-radius: 100px;
     border: 3px solid var(--cor2);
+    object-fit: cover;
+    object-position: center;
 }
 
 .perfil__header > div{

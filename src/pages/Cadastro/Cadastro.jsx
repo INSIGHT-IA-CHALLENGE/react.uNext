@@ -39,10 +39,6 @@ function Cadastro() {
         mascarasEmpresa()
     }
 
-    function trocaRadio(e) {
-
-    }
-
     //MASCARAS DOS CAMPOS
     function mascarasEmpresa() {
         const cep = document.getElementById('cep')
@@ -65,7 +61,7 @@ function Cadastro() {
         var cep = valor.replace(/\D/g, '');
 
         //Verifica se campo cep possui valor informado.
-        if (cep != "") {
+        if (cep !== "") {
 
             //Expressão regular para validar o CEP.
             var validacep = /^[0-9]{8}$/;
@@ -132,7 +128,7 @@ function Cadastro() {
         //BUSCAR ENDEREÇO
         document.getElementById('cep').addEventListener('change', element => {
             let cep = element.target.value
-            if (cep.length == 9)
+            if (cep.length === 9)
                 pesquisacep(cep)
         })
 

@@ -1,0 +1,91 @@
+.candidatura{
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.candidatura > .candidatura__title-section{
+    font-family: var(--poppins);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 30px;
+    text-align: center;
+    color: var(--cor1);
+}
+
+.candidatura > div:not(.botoes){
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.candidatura > div > div{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.candidatura > div > div > img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    margin-right: 15px;
+}
+
+.candidatura > div > div > h1{
+    font-family: var(--poppins);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 22px;
+}
+
+.candidatura > div > p{
+    font-size: 16px;
+    font-family: var(--poppins);
+    color: var(--cinza5);
+    font-weight: 600;
+    text-align: justify;
+    margin: 10px 0;
+}
+
+.candidatura > div > p > span{
+    font-size: 16px;
+    font-family: var(--poppins);
+    font-weight: 700;
+    color: #000;
+}
+
+.candidatura > div > p > strong{
+    font-size: 16px;
+    font-family: var(--poppins);
+    color: var(--cor5);
+    font-weight: 600;
+    padding: 15px;
+    border-radius: 50px;
+}
+
+.candidatura > div > p > strong.status{
+    font-weight: 700;
+    font-size: 16px;
+    padding: 4px 8px;
+    border-radius: 16px;
+}
+
+.candidatura > div > p > strong.em_andamento{
+    color: var(--cor5);
+    background-color: var(--cinza5);
+}
+
+.candidatura > div > p > strong.reprovado{
+    color: darkred;
+    background-color: lightcoral;
+}
+
+.candidatura > div > p > strong.aprovado{
+    color: darkgreen;
+    background-color: lightgreen;
+}
