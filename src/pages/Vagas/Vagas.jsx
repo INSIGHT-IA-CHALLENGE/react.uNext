@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import TabMenu from '../../components/TabMenu/TabMenu';
+import CardVaga from '../../components/CardVaga/CardVaga';
 import './Vagas.css'
 import '../../styles/Logado.css'
-import CardVaga from '../../components/CardVaga/CardVaga';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import Modal from '../../components/Modal/Modal';
 
 function Vagas() {
 
@@ -15,7 +14,7 @@ function Vagas() {
         empresa: 'FIAP',
         dtEncerramento: '09/09/2022',
         salario: 2300.50,
-        cargo: 'Estágio em desenvolvimento', 
+        cargo: 'Estágio em desenvolvimento',
         descricao: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus!',
         hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
         match: 45
@@ -27,7 +26,7 @@ function Vagas() {
         empresa: 'IBM',
         dtEncerramento: '09/09/2022',
         salario: 3500.99,
-        cargo: 'Estágio em desenvolvimento', 
+        cargo: 'Estágio em desenvolvimento',
         descricao: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus!',
         hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
         match: 0
@@ -39,7 +38,7 @@ function Vagas() {
         empresa: 'Alura',
         dtEncerramento: '09/09/2022',
         salario: 1700.00,
-        cargo: 'Estágio em desenvolvimento', 
+        cargo: 'Estágio em desenvolvimento',
         descricao: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus!',
         hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
         match: 85
@@ -51,7 +50,7 @@ function Vagas() {
         empresa: 'IBM',
         dtEncerramento: '09/09/2022',
         salario: 3500.99,
-        cargo: 'Estágio em desenvolvimento', 
+        cargo: 'Estágio em desenvolvimento',
         descricao: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus!',
         hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
         match: 40
@@ -63,7 +62,7 @@ function Vagas() {
         empresa: 'Alura',
         dtEncerramento: '09/09/2022',
         salario: 3500.99,
-        cargo: 'Estágio em desenvolvimento', 
+        cargo: 'Estágio em desenvolvimento',
         descricao: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus!',
         hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
         match: 100
@@ -75,37 +74,44 @@ function Vagas() {
         empresa: 'Colégio Modulo',
         dtEncerramento: '09/09/2022',
         salario: 2300.50,
-        cargo: 'Estágio em desenvolvimento', 
+        cargo: 'Estágio em desenvolvimento',
         descricao: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus!',
         hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
         match: 70
     }
 
     const [vagas, setVagas] = useState([])
+    const [modalOpen, setModalOpen] = useState(false)
 
-    useEffect(()=>{
-        let loadVagas = [vaga1,vaga2,vaga3, vaga4, vaga5, vaga6]
+    useEffect(() => {
+        let loadVagas = [vaga1, vaga2, vaga3, vaga4, vaga5, vaga6]
 
         setVagas(loadVagas)
     }, [])
 
     return (
         <>
-           <Header/>
+            <Header />
 
             <main className="container">
-                <i className="fi fi-sliders"></i>
+                <i className="fi fi-sliders" onClick={() => setModalOpen(true)}></i>
+
+                <Modal isOpen={modalOpen} setOpen={setModalOpen} titulo="Filtrar">
+                    <form action="#">
+                        oi
+                    </form>
+                </Modal>
 
                 <div className="vagas">
                     {
                         vagas.map(vaga => (
-                            <CardVaga vaga={vaga} key={vaga.idVaga}/>
+                            <CardVaga vaga={vaga} key={vaga.idVaga} />
                         ))
                     }
                 </div>
             </main>
 
-            <TabMenu tab='vagas'/>
+            <TabMenu tab='vagas' />
         </>
     )
 }

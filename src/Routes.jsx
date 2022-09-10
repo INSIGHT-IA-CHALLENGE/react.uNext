@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Cadastro from './pages/Cadastro/Cadastro';
 import Candidatura from './pages/Candidatura/Candidatura';
 import Candidaturas from './pages/Candidaturas/Candidaturas';
+import Estatisticas from './pages/Estatisticas/Estatisticas';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Notificacoes from './pages/Notificacoes/Notificacoes';
@@ -24,12 +25,14 @@ export default function MyRoutes() {
         <Route path='/vagas' element={<Vagas />} />
         <Route path='/vagas/:idVaga' element={<Vaga />} />
 
+        <Route path='/candidaturas' element={<Candidaturas />} />
+        <Route path='/candidaturas/:idCandidatura' element={<Candidatura />} />
+
         <Route path='/perfil/:idUser' element={<Perfil />} />
 
         <Route path='/notificacoes' element={<Notificacoes />} />
 
-        <Route path='/candidaturas' element={<Candidaturas />} />
-        <Route path='/candidaturas/:idCandidatura' element={<Candidatura />} />
+        <Route path='/estatisticas' element={<Estatisticas />} />
       </Routes>
     </BrowserRouter>
   )

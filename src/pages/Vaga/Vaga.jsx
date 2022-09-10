@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Botao from '../../components/Botao/Botao';
 import Header from '../../components/Header/Header';
+import Modal from '../../components/Modal/Modal';
 import TabMenu from '../../components/TabMenu/TabMenu';
 import './Vaga.css'
 
 function Vaga() {
 
+    const [modalOpen, setModalOpen] = useState(false)
     const [vaga, setVaga] = useState({
         idVaga: 0,
         imgEmpresa: '',
@@ -107,7 +109,14 @@ function Vaga() {
                         <Link to="/vagas">
                             <Botao tipo='vazio'>Voltar</Botao>
                         </Link>
-                        <Botao tipo='cheio' cor='azul'>Me Candidatar</Botao>
+                        <Botao tipo='cheio' cor='azul' onClick={() => setModalOpen(true)}>
+                            Me Candidatar
+                        </Botao>
+
+                        <Modal isOpen={modalOpen} setOpen={setModalOpen} titulo="Sucesso">
+                            <i className="fi fi-check-mark-circle candidatura-realizada-check"></i>
+                            <span className='candidatura-realizada-span'>Candidaduta realizada!</span>
+                        </Modal>
                     </div>
 
                 </div>
