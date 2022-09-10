@@ -70,9 +70,3 @@
     font-size: 60px;
     animation: rodar 0.4s ease-out;
 }
-
-.candidatura-realizada-span{
-    font-weight: 600;
-    color: var(--cinza5);
-    font-size: 18px;
-}

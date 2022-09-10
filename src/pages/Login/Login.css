@@ -1,5 +1,5 @@
 /*BACKGROUND*/
-.main-login{
+.main-login {
     height: 100vh;
     width: 100vw;
     animation: backColors infinite 10s ease;
@@ -16,20 +16,20 @@
     50% {
         background-color: var(--cor2);
     }
-    
+
     100% {
         background-color: var(--cor1);
     }
 }
 
 /*FORMS*/
-.title{
+.title {
     width: 100%;
     text-align: center;
     position: relative;
 }
 
-.title > h1{
+.title>h1 {
     font-family: var(--poppins);
     color: var(--cinza5);
     text-transform: uppercase;
@@ -37,7 +37,7 @@
     font-size: 30px;
 }
 
-.title > a > span{
+.title>a>span {
     font-family: var(--poppins);
     color: var(--cinza5);
     position: absolute;
@@ -45,17 +45,17 @@
     top: 10%;
 }
 
-.title > a > span::before{
-    content:"\ea1e";
+.title>a>span::before {
+    content: "\ea1e";
     font-family: var(--icon);
     margin-right: 5px;
 }
 
-.title > a > img{
+.title>a>img {
     height: 50px;
 }
 
-.form-login{
+.form-login {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -85,6 +85,27 @@
     color: var(--cinza5);
 }
 
+.form__group>output {
+    position: absolute;
+    right: 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--cinza5);
+    border: 2px solid var(--cinza4);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18%;
+}
+
+.form__group>output.output__match-level::before {
+    content:"\eadd";
+    font-family: var(--icon);
+    font-size: 18px;
+}
+
 .form__group::before {
     font-family: var(--icon);
     position: absolute;
@@ -94,32 +115,44 @@
     top: 40px;
 }
 
-.form__group.email::before{
-    content:"\e91c";
+.form__group.email::before {
+    content: "\e91c";
 }
 
-.form__group.senha::before{
-    content:"\ea1b";
+.form__group.senha::before {
+    content: "\ea1b";
 }
 
-.form__group.nome::before{
-    content:"\ea23";
+.form__group.nome::before {
+    content: "\ea23";
 }
 
-.form__group.documento::before{
-    content:"\e9f7";
+.form__group.documento::before {
+    content: "\e9f7";
 }
 
-.form__group.data::before{
-    content:"\e947";
+.form__group.data::before {
+    content: "\e947";
 }
 
-.form__group.empresa::before{
-    content:"\e941";
+.form__group.empresa::before {
+    content: "\e941";
 }
 
-.form__group.endereco::before{
-    content:"\ea29";
+.form__group.endereco::before {
+    content: "\ea29";
+}
+
+.form__group.busca::before {
+    content: "\ea91";
+}
+
+.form__group.skill::before {
+    content: "\eaba";
+}
+
+.form__group.money::before {
+    content: "\e999";
 }
 
 input[type="date"]::-webkit-inner-spin-button,
@@ -148,9 +181,31 @@ input.form__control {
     width: 100%;
 }
 
-input:read-only{
+select.form__control {
+    margin-top: 5px;
+    font-size: 16px;
+    font-family: var(--poppins);
+    padding: 10px 45px 10px 10px;
+    border-radius: 5px;
+    border: 2px solid var(--cinza4);
+    outline: none;
+    transition: border-color 0.1s ease;
+    width: 100%;
+}
+
+select.form__control > option{
+    font-weight: 400;
+    color: var(--cinza5);
+}
+
+input[type='text']:read-only {
     background-color: var(--cinza2);
     pointer-events: none;
+}
+
+input[type='range'] {
+    padding: 0;
+    width: 80%;
 }
 
 button.form__control {
@@ -174,16 +229,16 @@ button.form__control:hover {
     background-color: var(--cor1);
 }
 
-.center{
+.center {
     text-align: center;
     width: 100%;
 }
 
-.botoes-login{
+.botoes-login {
     margin-top: 25px;
 }
 
-.botoes-login > a{
+.botoes-login>a {
     margin-top: 5px;
     font-family: var(--poppins);
     color: var(--cor4);
@@ -192,60 +247,60 @@ button.form__control:hover {
     width: 100%;
 }
 
-.radio__group{
+.radio__group {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 10px;
 }
 
-.radio__group  input{
+.radio__group input {
     display: none;
 }
 
-.radio__group  label{
+.radio__group label {
     color: var(--cinza5);
     font-family: var(--poppins);
     cursor: pointer;
 }
 
-.radio__group input:checked ~ label{
+.radio__group input:checked~label {
     color: var(--cor1);
 }
 
-.radio__group input:checked ~ label::before{
-    content:"\e960";
+.radio__group input:checked~label::before {
+    content: "\e960";
 }
 
-.radio__group  label::before{
-    content:"\e961";
+.radio__group label::before {
+    content: "\e961";
     font-family: var(--icon);
     margin-right: 5px;
 }
 
-.type{
+.type {
     width: 100%;
     display: none;
 }
 
-.type--ativo{
+.type--ativo {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
 /*MOBILE*/
-@media (max-width:500px){
-    
-    .title > a > span{
+@media (max-width:500px) {
+
+    .title>a>span {
         position: initial;
     }
-    
-    .form-login{
+
+    .form-login {
         padding: 50px 20px;
     }
-    
-    .radio__group{
+
+    .radio__group {
         flex-direction: column;
     }
 }

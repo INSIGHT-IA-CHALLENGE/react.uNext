@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import TabMenu from '../../components/TabMenu/TabMenu';
 import CardVaga from '../../components/CardVaga/CardVaga';
+import Modal from '../../components/Modal/Modal';
+import IMask from 'imask';
 import './Vagas.css'
 import '../../styles/Logado.css'
-import Modal from '../../components/Modal/Modal';
 
 function Vagas() {
 
@@ -83,22 +84,69 @@ function Vagas() {
     const [vagas, setVagas] = useState([])
     const [modalOpen, setModalOpen] = useState(false)
 
+    const [filtroMatchLevel, setFiltroMatchLevel] = useState(0)
+
     useEffect(() => {
         let loadVagas = [vaga1, vaga2, vaga3, vaga4, vaga5, vaga6]
 
         setVagas(loadVagas)
     }, [])
 
+    function addMascaras() {
+        IMask(document.getElementById('salario-min'), { mask: new RegExp(/^[0-9]*(\,[0-9]{0,2})?$/) })
+        IMask(document.getElementById('salario-max'), { mask: new RegExp(/^[0-9]*(\,[0-9]{0,2})?$/) })
+    }
+
+    function changeRangeOutput(e) {
+        setFiltroMatchLevel(e.target.value)
+    }
+
     return (
         <>
             <Header />
 
             <main className="container">
-                <i className="fi fi-sliders" onClick={() => setModalOpen(true)}></i>
+                <i className="fi fi-sliders" onClick={() => { setModalOpen(true) }}></i>
 
-                <Modal isOpen={modalOpen} setOpen={setModalOpen} titulo="Filtrar">
-                    <form action="#">
-                        oi
+                <Modal isOpen={modalOpen} setOpen={setModalOpen} titulo="Filtrar" afterOpen={() => addMascaras()}>
+                    <form action="#" style={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                        <div className="form__group col-12 busca" style={{ marginTop: 0 }}>
+                            <label htmlFor="busca">Pesquisar</label>
+                            <input type="text" className="form__control" placeholder="Empresa, Cargo ou Descrição" name="busca" id="busca" />
+                        </div>
+                        <div className="form__group col-12 skill">
+                            <label htmlFor="skills">Skills (Separe por vírgula)</label>
+                            <input type="text" className="form__control" placeholder="Skills" name="skills" id="skills" />
+                        </div>
+                        <div className="form__group col-6 money">
+                            <label htmlFor="skills">Salário Min</label>
+                            <input type="text" className="form__control" placeholder="Salário Min" name="salario-min" id="salario-min" />
+                        </div>
+                        <div className="form__group col-6 money">
+                            <label htmlFor="skills">Salário Max</label>
+                            <input type="text" className="form__control" placeholder="Salário Max" name="salario-max" id="salario-max" />
+                        </div>
+                        <div className="form__group col-12">
+                            <label htmlFor="skills">Match Leval Mínimo</label>
+                            <input type="range" className="form__control" name="match-level" id="match-level" min='0' max='100' defaultValue={filtroMatchLevel} onChange={(e) => changeRangeOutput(e)} />
+                            <output className='output__match-level'>{filtroMatchLevel}</output>
+                        </div>
+                        <div className="form__group col-12">
+                            <label htmlFor="skills">Ordenar por</label>
+                            <select className="form__control" placeholder="Skills" name="skills" id="skills">
+                                <option value="">Selecione</option>
+                                <option value="NomeEmpresa ASC">Nome empresa (A-Z)</option>
+                                <option value="NomeEmpresa DESC">Nome empresa (Z-A)</option>
+                                <option value="Salario ASC">Salário (Min-Max)</option>
+                                <option value="Salario DESC">Salário (Max-Min)</option>
+                                <option value="MatchLevel ASC">Match Level (Min-Max)</option>
+                                <option value="MatchLevel DESC">Match Level (Max-Min)</option>
+                            </select>
+                        </div>
+
+                        <div className="center">
+                            <button type="submit" className="form__control">Filtrar</button>
+                        </div>
                     </form>
                 </Modal>
 

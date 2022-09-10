@@ -115,7 +115,7 @@ function Vaga() {
 
                         <Modal isOpen={modalOpen} setOpen={setModalOpen} titulo="Sucesso">
                             <i className="fi fi-check-mark-circle candidatura-realizada-check"></i>
-                            <span className='candidatura-realizada-span'>Candidaduta realizada!</span>
+                            <span>Candidaduta realizada!</span>
                         </Modal>
                     </div>
 

@@ -14,6 +14,7 @@ function Modal(props) {
             overlayClassName='modal__overlay'
             shouldFocusAfterRender={false}
             closeTimeoutMS={200}
+            onAfterOpen={() => props.afterOpen()}
         >
             <header>
                 <h1>{props.titulo}</h1>

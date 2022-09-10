@@ -11,6 +11,7 @@ function CardCandidatura(props) {
                 <div className="candidatura__infos">
                     <h1>{props.dados.empresa}</h1>
                     <h3>{props.dados.cargo}</h3>
+                    <h3>Realizada em: {props.dados.dtCadastro}</h3>
                     <h3>Encerramento: {props.dados.dtEncerramento}</h3>
                     <strong className={props.dados.status.toLowerCase().replace(' ', '_')}>
                         {props.dados.status}

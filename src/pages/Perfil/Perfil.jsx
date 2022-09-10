@@ -3,12 +3,14 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Botao from '../../components/Botao/Botao';
 import Header from '../../components/Header/Header';
+import Modal from '../../components/Modal/Modal';
 import PerfilConteudo from '../../components/PerfilConteudo/PerfilConteudo';
 import TabMenu from '../../components/TabMenu/TabMenu';
 import './Perfil.css'
 
 function Perfil() {
 
+    const [modalOpen, setModalOpen] = useState(false)
     const [user, setUser] = useState({
         img: '',
         nome: '',
@@ -74,12 +76,12 @@ function Perfil() {
                 nivel: 9,
                 hardSkill: true,
                 softSkill: false
-            },{
+            }, {
                 descricao: 'Trabalho em equipe',
                 nivel: 0,
                 hardSkill: false,
                 softSkill: true
-            },{
+            }, {
                 descricao: 'Boa comunicação',
                 nivel: 0,
                 hardSkill: false,
@@ -126,12 +128,21 @@ function Perfil() {
                             Editar
                         </Botao>
 
-                        <Link to='/login'>
-                            <Botao tipo='cheio' cor='vermelho'>
-                                <i className="fi fi-power-off"></i>
-                                Sair
-                            </Botao>
-                        </Link>
+                        <Botao tipo='cheio' cor='vermelho' onClick={() => setModalOpen(true)}>
+                            <i className="fi fi-power-off"></i>
+                            Sair
+                        </Botao>
+
+                        <Modal isOpen={modalOpen} setOpen={setModalOpen} titulo="Confirmação" afterOpen={() => { }}>
+                            <span>Deseja realmente sair da sua conta?</span>
+                            <div className="botoes">
+                                <Link to='/login'>
+                                    <Botao tipo='vazio' cor='vermelho' onClick={() => setModalOpen(true)}>
+                                        Confirmar
+                                    </Botao>
+                                </Link>
+                            </div>
+                        </Modal>
                     </div>
 
                 </div>

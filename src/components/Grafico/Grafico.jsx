@@ -41,7 +41,7 @@ function Grafico(props) {
                         plugins: {
                             title: {
                                 display: true,
-                                text: 'Quantidade de candidaturas por status'
+                                text: props.descricao
                             }
                         },
                     }} />
@@ -79,7 +79,7 @@ function Grafico(props) {
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: 'Porcentagem média de Match Level por status'
+                                    text: props.descricao
                                 }
                             },
                             scales: {
@@ -106,7 +106,7 @@ function Grafico(props) {
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: `Quantidade de candidaturas realizadas por mês (${new Date().getFullYear()})`
+                                    text: props.descricao
                                 },
                                 legend: {
                                     position: 'top',
