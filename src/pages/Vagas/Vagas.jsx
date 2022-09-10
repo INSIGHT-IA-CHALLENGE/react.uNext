@@ -119,11 +119,11 @@ function Vagas() {
                             <input type="text" className="form__control" placeholder="Skills" name="skills" id="skills" />
                         </div>
                         <div className="form__group col-6 money">
-                            <label htmlFor="skills">Salário Min</label>
+                            <label htmlFor="salario-min">Salário Min</label>
                             <input type="text" className="form__control" placeholder="Salário Min" name="salario-min" id="salario-min" />
                         </div>
                         <div className="form__group col-6 money">
-                            <label htmlFor="skills">Salário Max</label>
+                            <label htmlFor="salario-max">Salário Max</label>
                             <input type="text" className="form__control" placeholder="Salário Max" name="salario-max" id="salario-max" />
                         </div>
                         <div className="form__group col-12">
