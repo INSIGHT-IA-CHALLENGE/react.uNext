@@ -3,11 +3,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Botao from '../../components/Botao/Botao';
 import Header from '../../components/Header/Header';
+import Modal from '../../components/Modal/Modal';
 import TabMenu from '../../components/TabMenu/TabMenu';
 import './Candidatura.css'
 
 function Candidatura() {
 
+    const [modalOpen, setModalOpen] = useState(false)
     const [candidatura, setCandidatura] = useState({
         idCandidatura: 5,
         imgEmpresa: 'https://d3q79ipuvy7qd5.cloudfront.net/entities/7ce00c272930b23d464e561b7e99d375/de845e1b08a32902056c0e04d0c469533bbf9af590b2c4abbae62e1aa83f4a55.png',
@@ -116,10 +118,23 @@ function Candidatura() {
                         <Link to="/candidaturas">
                             <Botao tipo='vazio'>Voltar</Botao>
                         </Link>
-                        <Botao tipo='cheio' cor='vermelho'>
+                        
+                        <Botao tipo='cheio' cor='vermelho' onClick={() => setModalOpen(true)}>
                             <i className="fi fi-recycle-bin"></i>
                             Cancelar
                         </Botao>
+
+                        <Modal isOpen={modalOpen} setOpen={setModalOpen} titulo="Confirmação" afterOpen={() => { }}>
+                            <span>Deseja realmente cancelar sua canditura?</span>
+                            <div className="botoes">
+                                <Link to='/login'>
+                                    <Botao tipo='vazio' cor='vermelho' onClick={() => setModalOpen(true)}>
+                                        Confirmar
+                                    </Botao>
+                                </Link>
+                            </div>
+                        </Modal>
+
                     </div>
                 </div>
             </main>
