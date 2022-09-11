@@ -1,0 +1,76 @@
+.btn{
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: var(--poppins);
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+/* ICON */
+.btn > .fi{
+    margin-right: 5px;
+}
+
+/* CINZA */
+.btn.cheio{
+    border: 3px solid var(--cinza5);
+    color: var(--cinza1);
+    background-color: var(--cinza5);
+}
+
+.btn.vazio{
+    border: 3px solid var(--cinza5);
+    color: var(--cinza5);
+    background-color: transparent;
+}
+
+.btn.vazio:hover{
+    color: var(--cinza1);
+    background-color: var(--cinza5);
+}
+
+/* AZUL */
+.btn.cheio.azul{
+    border: 3px solid var(--cor1);
+    color: var(--cor5);
+    background-color: var(--cor1);
+}
+
+.btn.vazio.azul{
+    border: 3px solid var(--cor1);
+    color: var(--cor1);
+    background-color: transparent;
+}
+
+.btn.vazio.azul:hover{
+    color: var(--cor5);
+    background-color: var(--cor1);
+}
+
+/* VERMELHO */
+.btn.cheio.vermelho{
+    border: 3px solid lightcoral;
+    color: darkred;
+    background-color: lightcoral;
+}
+
+.btn.vazio.vermelho{
+    border: 3px solid lightcoral;
+    color: lightcoral;
+    background-color: transparent;
+}
+
+.btn.vazio.vermelho:hover{
+    color: darkred;
+    background-color: lightcoral;
+}
+
+@media (max-width:860px){
+    .btn{
+        font-size: 12px;
+    }
+}

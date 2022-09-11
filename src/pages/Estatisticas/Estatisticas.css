@@ -1,0 +1,11 @@
+.estatisticas{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px 2%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
