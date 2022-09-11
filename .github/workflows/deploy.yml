@@ -1,4 +1,4 @@
-name: deploy
+name: deploy automatizado
 
 on:
   pull_request:
