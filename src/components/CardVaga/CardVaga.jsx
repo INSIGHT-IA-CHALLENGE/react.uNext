@@ -79,7 +79,7 @@ function CardVaga(props) {
                         <span>Hard Skills: </span>
                         {
                             props.vaga.hardSkills.map((skill, index) => {
-                                let aux = new String(skill + ', ')
+                                let aux = skill + ', '
                                 if (index + 1 === props.vaga.hardSkills.length)
                                     aux = aux.replace(',', '')
 
