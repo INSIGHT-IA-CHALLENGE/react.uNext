@@ -65,7 +65,7 @@ function Slider() {
         trocaAutomatico()
     }
 
-    function toEsquerda() {
+    function toDireita() {
 
         if ($index + 1 === $totalSlides)
             $index = 0
@@ -75,7 +75,7 @@ function Slider() {
         alteraSlide()
     }
 
-    function toDireita() {
+    function toEsquerda() {
         if ($index === 0)
             $index = $totalSlides - 1
         else
