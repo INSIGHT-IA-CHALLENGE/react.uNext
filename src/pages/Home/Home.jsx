@@ -367,7 +367,7 @@ function Home() {
 
                             <div className="form__group col-12 alert erro">Ocorreu um erro ao enviar a mensagem. Tente novamente.</div> */}
 
-                            <div className="form__group col-12 alert"></div>
+                            <div className="form__group col-12 alert">Só testando</div>
 
 
                             <button type="submit" className="form__control">Enviar Mensagem</button>
