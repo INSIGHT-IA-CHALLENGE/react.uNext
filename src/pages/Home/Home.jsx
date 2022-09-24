@@ -1,6 +1,8 @@
 import React from 'react';
 import { useEffect } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 import Slider from '../../components/Slider/Slider';
 import './Home.css'
 import './Mobile.css'
@@ -47,13 +49,41 @@ function Home() {
         if (item === "contato") window.scrollTo(0, contato + 1)
     }
 
-    function abreMenu(){
+    function abreMenu() {
         if ($nav.classList.contains('ativo')) {
             $nav.classList.remove('ativo')
         } else {
             $nav.classList.add('ativo')
         }
     }
+
+    function enviarMensagem(e) {
+        e.preventDefault();
+
+        let botao = formMensagem.current.querySelector('button[type="submit"]')
+        botao.innerText = "Enviando...";
+        botao.disabled = true;
+
+        let alert = formMensagem.current.querySelector('.alert')
+
+        emailjs.sendForm('service_unext', 'template_nova_mensagem', formMensagem.current, 'oCwvYVowxRDDux-Qk')
+            .then((result) => {
+                alert.classList.remove("erro");
+                alert.classList.add("sucesso");
+                alert.innerText = "Mensagem enviada com sucesso. Aguarde sua resposta em seu email."
+                formMensagem.current.reset()
+            }, (error) => {
+                alert.classList.remove("sucesso");
+                alert.classList.add("erro");
+                alert.innerText = "Ocorreu um erro ao enviar a mensagem. Tente novamente mais tarde."
+            })
+            .finally(() => {
+                botao.innerText = "Enviar Mensagem";
+                botao.disabled = false;
+            });
+    }
+
+    const formMensagem = useRef();
 
     useEffect(() => {
         document.title = "uNext | Home"
@@ -74,6 +104,17 @@ function Home() {
         })
 
         rolagem()
+
+
+
+        fetch('http://localhost:8080/LojaApp/rest/produto')
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }, [])
 
     return (
@@ -301,30 +342,33 @@ function Home() {
                         </div>
                     </div>
 
-                    <form className="form">
+                    <form ref={formMensagem} className="form" onSubmit={enviarMensagem}>
                         <h2 className="form__title">Envie <span>uma mensagem</span></h2>
 
                         <div className="form__inputs">
                             <div className="form__group col-6 nome">
                                 <label htmlFor="nome">Nome</label>
-                                <input type="text" name="nome" id="nome" required className="form__control nome" placeholder="Nome"
+                                <input type="text" name="from_name" id="nome" required className="form__control nome" placeholder="Nome"
                                     autoComplete="off" />
                             </div>
 
                             <div className="form__group col-6 email">
                                 <label htmlFor="email">Email</label>
-                                <input type="email" name="email" id="email" required className="form__control" placeholder="Email"
+                                <input type="email" name="from_email" id="email" required className="form__control" placeholder="Email"
                                     autoComplete="off" />
                             </div>
 
                             <div className="form__group col-12 mensagem">
                                 <label htmlFor="mensagem">Mensagem</label>
-                                <textarea type="area" name="mensagem" id="mensagem" required className="form__control" placeholder="Mensagem" autoComplete="off"></textarea>
+                                <textarea type="area" name="message" id="mensagem" required className="form__control" placeholder="Mensagem" autoComplete="off"></textarea>
                             </div>
 
-                            <div className="form__group col-12 alert sucesso">Mensagem enviada com sucesso. Aguarde sua resposta em seu email.</div>
+                            {/* <div className="form__group col-12 alert sucesso">Mensagem enviada com sucesso. Aguarde sua resposta em seu email.</div>
 
-                            <div className="form__group col-12 alert erro">Ocorreu um erro ao enviar a mensagem. Tente novamente.</div>
+                            <div className="form__group col-12 alert erro">Ocorreu um erro ao enviar a mensagem. Tente novamente.</div> */}
+
+                            <div className="form__group col-12 alert"></div>
+
 
                             <button type="submit" className="form__control">Enviar Mensagem</button>
                         </div>
