@@ -6,10 +6,9 @@ on:
       - closed
     branches:
       - main
-
-if_merged:
-  if: github.event.pull_request.merged == true
-    jobs:
+jobs:
+  if_merged:
+    if: github.event.pull_request.merged == true
       deploy:
         runs-on: ubuntu-18.04
         steps:
@@ -26,3 +25,6 @@ if_merged:
             with:
               github_token: ${{ secrets.GITHUB_TOKEN }}
               publish_dir: ./build
+
+
+    
