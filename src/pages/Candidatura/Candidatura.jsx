@@ -17,13 +17,13 @@ function Candidatura() {
         dtEncerramento: '09/09/2022',
         salario: 1700,
         cargo: 'Estágio em desenvolvimento',
-        descricao: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus!',
+        descricao: 'Antes de tudo, é importante entender que o crescimento organizacional depende da busca por novos talentos. Como funcionário, você é responsável por fornecer oportunidades para que sua organização cresça. Isso significa promover os sucessos de sua equipe para membros novos e existentes. Você também precisará encontrar maneiras de resolver os problemas dos membros e documentar as ações de cada membro no trabalho. Ao desenvolver todos em sua equipe, você ajudará todos a ter sucesso, o que, por sua vez, ajudará sua organização a prosperar.',
         hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
         candidaturas: 2,
         match: 80,
         dtCadastro: '01/09/2022',
         status: 'Aprovado',
-        feedback: `Adoramos seu perfil! \n\n Enviaremos um email para você em breve.`
+        feedback: `Adoramos seu perfil! Enviaremos um email para você em breve.`
     })
 
     function corMatch(match) {

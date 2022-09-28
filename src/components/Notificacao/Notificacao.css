@@ -58,13 +58,13 @@
 }
 
 .notificacao__conteudo > h3{
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 3px;
     font-size: 20px;
 }
 
 .notificacao__conteudo > h6{
-    font-weight: 300;
+    font-weight: 500;
     font-size: 18px;
 }
 

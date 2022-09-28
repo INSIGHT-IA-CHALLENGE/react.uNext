@@ -249,9 +249,9 @@ button.form__control:hover {
 
 .radio__group {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 10px;
+    gap: 0 30px;
 }
 
 .radio__group input {

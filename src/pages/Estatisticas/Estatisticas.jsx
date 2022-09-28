@@ -32,14 +32,14 @@ function Estatisticas() {
             meses: {
                 descricao: `Quantidade de candidaturas realizadas por mês (${new Date().getFullYear()})`,
                 labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                valores: [0,0,0,0,0,0,0,0,3,0,0,0],
-                total: 0.25
+                valores: [0,0,0,0,0,0,2,1,3,0,0,0],
+                total: 0.4
             },
             status: {
                 descricao: 'Quantidade de candidaturas por status',
                 labels: ['Aprovado', 'Reprovado', 'Em Andamento'],
-                valores: [1, 1, 1],
-                total: 3
+                valores: [1, 1, 2],
+                total: 4
             },
             matchLevel: {
                 descricao: 'Porcentagem média de Match Level por status',
