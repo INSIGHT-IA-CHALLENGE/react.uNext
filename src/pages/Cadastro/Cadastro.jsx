@@ -134,7 +134,7 @@ function Cadastro() {
 
         document.querySelectorAll("input[name='tipoCadastro']").forEach(elemento => {
             elemento.addEventListener('click', () => {
-                if (elemento.value === "candidato" || elemento.value === "recrutador") {
+                if (elemento.value === "candidato") {
                     desativaFormEmpresa()
                 } else {
                     desativaFormPessoa()
@@ -164,11 +164,6 @@ function Cadastro() {
                         <div>
                             <input type="radio" name="tipoCadastro" value="candidato" id="candidato" required defaultChecked />
                             <label htmlFor="candidato">Candidato</label>
-                        </div>
-
-                        <div>
-                            <input type="radio" name="tipoCadastro" value="recrutador" id="recrutador" />
-                            <label htmlFor="recrutador">Recrutador</label>
                         </div>
 
                         <div>
@@ -293,7 +288,7 @@ function Cadastro() {
                 </div>
 
                 {/* <!-- MENSAGEM DE ERRO --> */}
-                <div className="form__group col-12 alert erro">Email já cadastrado.</div>
+                {/* <div className="form__group col-12 alert erro">Email já cadastrado.</div> */}
 
                 {/* <!-- BOTÃO CADASTRAR --> */}
                 <div className="center">

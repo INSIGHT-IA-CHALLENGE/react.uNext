@@ -16,7 +16,7 @@ function Vagas() {
         dtEncerramento: '09/09/2022',
         salario: 2300.50,
         cargo: 'Estágio em desenvolvimento',
-        descricao: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus!',
+        descricao: 'Antes de tudo, é importante entender que o crescimento organizacional depende da busca por novos talentos. Como funcionário, você é responsável por fornecer oportunidades para que sua organização cresça. Isso significa promover os sucessos de sua equipe para membros novos e existentes.',
         hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
         match: 45
     }
@@ -28,7 +28,7 @@ function Vagas() {
         dtEncerramento: '09/09/2022',
         salario: 3500.99,
         cargo: 'Estágio em desenvolvimento',
-        descricao: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus!',
+        descricao: 'Antes de tudo, é importante entender que o crescimento organizacional depende da busca por novos talentos. Como funcionário, você é responsável por fornecer oportunidades para que sua organização cresça. Isso significa promover os sucessos de sua equipe para membros novos e existentes.',
         hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
         match: 0
     }
@@ -40,7 +40,7 @@ function Vagas() {
         dtEncerramento: '09/09/2022',
         salario: 1700.00,
         cargo: 'Estágio em desenvolvimento',
-        descricao: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus!',
+        descricao: 'Antes de tudo, é importante entender que o crescimento organizacional depende da busca por novos talentos. Como funcionário, você é responsável por fornecer oportunidades para que sua organização cresça. Isso significa promover os sucessos de sua equipe para membros novos e existentes.',
         hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
         match: 85
     }
@@ -52,7 +52,7 @@ function Vagas() {
         dtEncerramento: '09/09/2022',
         salario: 3500.99,
         cargo: 'Estágio em desenvolvimento',
-        descricao: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus!',
+        descricao: 'Antes de tudo, é importante entender que o crescimento organizacional depende da busca por novos talentos. Como funcionário, você é responsável por fornecer oportunidades para que sua organização cresça. Isso significa promover os sucessos de sua equipe para membros novos e existentes.',
         hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
         match: 40
     }
@@ -64,7 +64,7 @@ function Vagas() {
         dtEncerramento: '09/09/2022',
         salario: 3500.99,
         cargo: 'Estágio em desenvolvimento',
-        descricao: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus!',
+        descricao: 'Antes de tudo, é importante entender que o crescimento organizacional depende da busca por novos talentos. Como funcionário, você é responsável por fornecer oportunidades para que sua organização cresça. Isso significa promover os sucessos de sua equipe para membros novos e existentes.',
         hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
         match: 100
     }
@@ -76,7 +76,7 @@ function Vagas() {
         dtEncerramento: '09/09/2022',
         salario: 2300.50,
         cargo: 'Estágio em desenvolvimento',
-        descricao: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet a sit doloremque quae culpa, tempore explicabo blanditiis praesentium nisi natus pariatur, maiores adipisci deserunt dolore beatae? Similique deserunt error delectus!',
+        descricao: 'Antes de tudo, é importante entender que o crescimento organizacional depende da busca por novos talentos. Como funcionário, você é responsável por fornecer oportunidades para que sua organização cresça. Isso significa promover os sucessos de sua equipe para membros novos e existentes.',
         hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
         match: 70
     }

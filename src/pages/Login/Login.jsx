@@ -27,8 +27,7 @@ function Login() {
                     <input type="password" className="form__control" placeholder="Senha" required name="senha" id="senha" />
                 </div>
 
-                <div className="form__group col-12 alert erro">Email ou Senha incorreta. Tente novamente.
-                </div>
+                {/* <div className="form__group col-12 alert erro">Email ou Senha incorreta. Tente novamente. </div> */}
 
                 <div className="center">
                     <button type="submit" className="form__control">Entrar</button>
