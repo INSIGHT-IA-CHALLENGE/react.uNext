@@ -17,7 +17,7 @@ function RecuperarSenha() {
                     <input type="email" className="form__control" placeholder="Email" required name="email" id="email" />
                 </div>
 
-                <div className="form__group col-12 alert erro">Email não encontrado.</div>
+                {/* <div className="form__group col-12 alert erro">Email não encontrado.</div> */}
 
                 <div className="center">
                     <button type="submit" className="form__control">Recuperar</button>
