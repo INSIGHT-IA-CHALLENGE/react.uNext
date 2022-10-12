@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import IMask from 'imask';
 import { useState } from 'react';
+import { baseUrl, validaLogin } from '../../auth/auth';
 
 function Cadastro() {
 
@@ -120,6 +121,9 @@ function Cadastro() {
     useEffect(() => {
         document.title = "uNext | Cadastro"
 
+        if (validaLogin())
+            window.location.replace('/vagas')
+
         formPessoa = document.querySelector('.pessoa')
         formEmpresa = document.querySelector('.empresa')
 
@@ -167,7 +171,7 @@ function Cadastro() {
 
     async function cadastraUsuario(json, form) {
         console.log(json)
-        fetch(`http://localhost:8080/uNext/rest/usuario/${tipoCadastro}`, {
+        fetch(`${baseUrl()}/usuario/${tipoCadastro}`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: json

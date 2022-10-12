@@ -1,7 +1,15 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { validaLogin } from '../../auth/auth';
 
 function RecuperarSenha() {
+
+    useEffect(() => {
+        if (validaLogin())
+            window.location.replace('/vagas')
+    }, [])
+
     return (
         <main className='main-login'>
             <form action="#" className="form-login">
