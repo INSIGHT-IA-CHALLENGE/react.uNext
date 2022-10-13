@@ -8,16 +8,25 @@ function PerfilConteudo(props) {
 
             {
                 props.contatos && (
-                    props.contatos.map((contato, i) => (
-                        <div className="conteudo__item" key={i}>
-                            <h1>{contato.descricao}</h1>
+                    <>
+                        <div className="conteudo__item">
+                            <h1>Telefone</h1>
                             {
-                                contato.itens.map((item, j) =>(
-                                    <h3 key={j}>{item}</h3>
+                                props.contatos.filter(item => item.telefone != null).map((item, i) => (
+                                    <h3 key={item.id}>{item.telefone}</h3>
                                 ))
                             }
                         </div>
-                    ))
+
+                        <div className="conteudo__item">
+                            <h1>Email</h1>
+                            {
+                                props.contatos.filter(item => item.email != null).map((item, i) => (
+                                    <h3 key={item.id}>{item.email}</h3>
+                                ))
+                            }
+                        </div>
+                    </>
                 )
             }
             {

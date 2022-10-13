@@ -47,6 +47,6 @@ export function validaLogin() {
     }
 }
 
-export function userLogado(){
+export function getUserLogado(){
     return JSON.parse(localStorage.getItem('user-logado'))
 }

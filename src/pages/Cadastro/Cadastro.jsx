@@ -289,12 +289,12 @@ function Cadastro() {
 
                         <div className="form__group col-12 documento">
                             <label htmlFor="cpf">CPF</label>
-                            <input type="text" className="form__control" placeholder="CPF" required name="cpf" id="cpf" />
+                            <input type="text" className="form__control" placeholder="CPF" required name="cpf" id="cpf" maxLength={14}/>
                         </div>
 
                         <div className="form__group col-12 documento">
                             <label htmlFor="cpf">RG</label>
-                            <input type="text" className="form__control" placeholder="RG" required name="rg" id="rg" />
+                            <input type="text" className="form__control" placeholder="RG" required name="rg" id="rg" maxLength={12}/>
                         </div>
 
                         <div className="form__group col-6">
