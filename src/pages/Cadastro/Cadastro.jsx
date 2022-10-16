@@ -103,10 +103,10 @@ function Cadastro() {
 
     function insereRetornoCep(conteudo) {
         //Atualiza os campos com os valores.
-        document.getElementById('rua').value = (conteudo.logradouro);
-        document.getElementById('bairro').value = (conteudo.bairro);
-        document.getElementById('cidade').value = (conteudo.localidade);
-        document.getElementById('uf').value = (conteudo.uf);
+        document.getElementById('rua').value = (conteudo.logradouro) ?? '';
+        document.getElementById('bairro').value = (conteudo.bairro) ?? '';
+        document.getElementById('cidade').value = (conteudo.localidade) ?? '';
+        document.getElementById('uf').value = (conteudo.uf) ?? '';
     }
 
     function limpaEndereco() {
@@ -170,7 +170,6 @@ function Cadastro() {
     }
 
     async function cadastraUsuario(json, form) {
-        console.log(json)
         fetch(`${baseUrl()}/usuario/${tipoCadastro}`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
@@ -289,12 +288,12 @@ function Cadastro() {
 
                         <div className="form__group col-12 documento">
                             <label htmlFor="cpf">CPF</label>
-                            <input type="text" className="form__control" placeholder="CPF" required name="cpf" id="cpf" maxLength={14}/>
+                            <input type="numeric" className="form__control" placeholder="CPF" required name="cpf" id="cpf" maxLength={14}/>
                         </div>
 
                         <div className="form__group col-12 documento">
                             <label htmlFor="cpf">RG</label>
-                            <input type="text" className="form__control" placeholder="RG" required name="rg" id="rg" maxLength={12}/>
+                            <input type="numeric" className="form__control" placeholder="RG" required name="rg" id="rg" maxLength={12}/>
                         </div>
 
                         <div className="form__group col-6">
@@ -350,7 +349,7 @@ function Cadastro() {
 
                         <div className="form__group col-12 documento">
                             <label htmlFor="cnpj">CNPJ</label>
-                            <input type="text" className="form__control" placeholder="CNPJ" required name="cnpj" id="cnpj" />
+                            <input type="numeric" className="form__control" placeholder="CNPJ" required name="cnpj" id="cnpj" />
                         </div>
                     </div>
                 </div>
@@ -358,7 +357,7 @@ function Cadastro() {
                 {/* <!-- INFORMAÇÕES DE LOGIN --> */}
                 <div className="form__group col-6 endereco">
                     <label htmlFor="cep">CEP</label>
-                    <input type="text" className="form__control" placeholder="00000-000" required name="cep" id="cep" />
+                    <input type="numeric" className="form__control" placeholder="00000-000" required name="cep" id="cep" />
                 </div>
 
                 <div className="form__group col-6 endereco">
@@ -392,7 +391,7 @@ function Cadastro() {
 
                 <div className="form__group col-6 endereco">
                     <label htmlFor="numero">Número</label>
-                    <input type="text" className="form__control" placeholder="Número" required name="numero" id="numero" maxLength={9}/>
+                    <input type="numeric" className="form__control" placeholder="Número" required name="numero" id="numero" maxLength={9}/>
                 </div>
 
                 <div className="form__group col-12 email">

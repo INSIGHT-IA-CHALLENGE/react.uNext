@@ -1,35 +1,15 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import { baseUrl, deslogar, getUserLogado, userLogado, validaLogin } from '../../auth/auth';
-import Botao from '../../components/Botao/Botao';
+import { useParams } from 'react-router-dom';
+import { baseUrl, getUserLogado } from '../../auth/auth';
 import Header from '../../components/Header/Header';
-import Modal from '../../components/Modal/Modal';
-import PerfilConteudo from '../../components/PerfilConteudo/PerfilConteudo';
+import PerfilCandidato from '../../components/PerfilCandidato/PerfilCandidato';
+import PerfilEmpresa from '../../components/PerfilEmpresa/PerfilEmpresa';
 import TabMenu from '../../components/TabMenu/TabMenu';
 import './Perfil.css'
 
 function Perfil() {
 
-    const AddFoto = styled.label`
-        background: none;
-        border: none;
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-
-        & > i {
-            font-size: 30px;
-            color: var(--cinza5);
-            cursor: pointer;
-            background-color: var(--cinza1);
-            border-radius: 60px;
-        }
-    `
-
-    const [foto, setFoto] = useState()
-    const [modalOpen, setModalOpen] = useState(false)
     const userLogado = getUserLogado()
     const { tipoUser, idUser } = useParams('id')
     const [userPerfil, setUserPerfil] = useState({
@@ -41,14 +21,16 @@ function Perfil() {
         endereco: '',
         contatos: [],
         formacoesAcademicas: [],
-        skills: []
+        skills: [],
+        usuario: { login: '' }
     })
     const donoPerfil = (userLogado.id == idUser && userLogado.tipo == tipoUser)
 
     useEffect(() => {
-        if (!validaLogin())
-            window.location.replace('/login')
+        atualizaPerfil()
+    }, [donoPerfil])
 
+    function atualizaPerfil() {
         fetch(`${baseUrl()}/${tipoUser}/perfil/${idUser}`, {
             method: 'GET'
         })
@@ -61,7 +43,7 @@ function Perfil() {
                 else
                     setUserPerfil(null)
             })
-    }, [donoPerfil])
+    }
 
     function mudaFotoPerfil(e) {
         const file = e.target.files[0]
@@ -73,10 +55,16 @@ function Perfil() {
             let base64 = reader.result
             base64 = base64.replace('data:image/png;base64,', '').replace('data:image/jpeg;base64,', '')
 
-            fetch(`${baseUrl()}/${tipoUser}/${idUser}/foto`, {
+            let json
+            if(tipoUser === 'candidato')
+                json = JSON.stringify({ urlFoto: base64, idCandidato: idUser })
+            else
+                json = JSON.stringify({ fotoEmpresa: base64, id: idUser })
+
+            fetch(`${baseUrl()}/${tipoUser}/foto`, {
                 method: 'PUT',
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ foto: base64 })
+                body: json
             })
                 .then(res => {
                     if (res.ok) {
@@ -92,46 +80,20 @@ function Perfil() {
             <Header />
 
             <main className="container">
-
                 <div className="perfil">
 
                     {
-                        userPerfil !== null &&
-                        <>
-                            <div className="perfil__header">
-                                <div className='foto'>
-                                    <img src={userPerfil.urlFoto ? `data:image/png;base64,${userPerfil.urlFoto}` : '/images/user.png'} alt="Foto User" id='ft-perfil' />
-                                    {
-                                        donoPerfil &&
-                                        <>
-                                            <input type="file" id='input-add-foto' accept="image/png, image/jpeg" onChange={mudaFotoPerfil} />
-                                            <AddFoto htmlFor='input-add-foto'><i className="fi fi-plus-round"></i></AddFoto>
-                                        </>
-                                    }
-                                </div>
-
-
-                                <div>
-                                    <h1>{userPerfil.nome}</h1>
-                                    <h3>{userPerfil.dataNascimento}</h3>
-                                    <h3>{userPerfil.escolaridade}</h3>
-                                    <h3>{userPerfil.atuacao ?? ''}</h3>
-                                    <h3>{userPerfil.endereco.cidade}</h3>
-                                </div>
-                            </div>
-
-                            <PerfilConteudo contatos={userPerfil.contatos}>
-                                Contatos
-                            </PerfilConteudo>
-
-                            <PerfilConteudo formacoes={userPerfil.formacoes}>
-                                Formação Acadêmica
-                            </PerfilConteudo>
-
-                            <PerfilConteudo skills={userPerfil.skills}>
-                                Skills
-                            </PerfilConteudo>
-                        </>
+                        tipoUser === 'candidato'
+                            ? <PerfilCandidato
+                                userPerfil={userPerfil}
+                                donoPerfil={donoPerfil}
+                                mudaFotoPerfil={mudaFotoPerfil}
+                                atualizaPerfil={atualizaPerfil} />
+                            : <PerfilEmpresa
+                                userPerfil={userPerfil}
+                                donoPerfil={donoPerfil}
+                                mudaFotoPerfil={mudaFotoPerfil}
+                                atualizaPerfil={atualizaPerfil}/>
                     }
 
                     {
@@ -141,35 +103,7 @@ function Perfil() {
                         </strong>
                     }
 
-                    {
-                        donoPerfil &&
-                        <div className='botoes'>
-                            <Botao tipo='vazio'>
-                                <i className="fi fi-setting"></i>
-                                Editar
-                            </Botao>
-
-                            <Botao tipo='cheio' cor='vermelho' onClick={() => setModalOpen(true)}>
-                                <i className="fi fi-power-off"></i>
-                                Sair
-                            </Botao>
-
-                            <Modal isOpen={modalOpen} setOpen={setModalOpen} titulo="Confirmação" afterOpen={() => { }}>
-                                <span>Deseja realmente sair da sua conta?</span>
-                                <div className="botoes">
-                                    <Link to='/login'>
-                                        <Botao tipo='vazio' cor='vermelho' onClick={() => { setModalOpen(true); deslogar(); }}>
-                                            Confirmar
-                                        </Botao>
-                                    </Link>
-                                </div>
-                            </Modal>
-                        </div>
-                    }
-
                 </div>
-
-
             </main>
 
             <TabMenu tab='perfil' />

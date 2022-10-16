@@ -48,5 +48,12 @@ export function validaLogin() {
 }
 
 export function getUserLogado(){
-    return JSON.parse(localStorage.getItem('user-logado'))
+    
+    if(validaLogin())
+        return JSON.parse(localStorage.getItem('user-logado'))
+    else{
+        deslogar()
+        window.location.replace('/login')
+    }
+
 }
