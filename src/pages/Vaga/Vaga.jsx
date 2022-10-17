@@ -1,44 +1,186 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { baseUrl, getUserLogado } from '../../auth/auth';
 import Botao from '../../components/Botao/Botao';
 import Header from '../../components/Header/Header';
 import Modal from '../../components/Modal/Modal';
 import TabMenu from '../../components/TabMenu/TabMenu';
+import { RemoveItem } from '../Perfil/styled';
 import './Vaga.css'
 
 function Vaga() {
 
-    const [modalOpen, setModalOpen] = useState(false)
-    const [vaga, setVaga] = useState({
-        idVaga: 0,
-        imgEmpresa: '',
-        empresa: '',
-        dtEncerramento: '',
-        salario: 0,
-        cargo: '',
-        descricao: '',
-        hardSkills: [],
-        match: 0
-    })
+    const userLogado = getUserLogado()
+    const [userCandidato, setUserCandidato] = useState(null)
+    const { idVaga } = useParams()
+    const [modalSucessoOpen, setModalSucessoOpen] = useState(false)
+    const [modalEditarOpen, setModalEditarOpen] = useState(false)
+    const [modalRemoverOpen, setModalRemoverOpen] = useState(false)
+    const [modalSkillOpen, setModalSkillOpen] = useState(false)
+    const [buscaSkill, setBuscaSkill] = useState('')
+    const [vaga, setVaga] = useState(null)
+    const [glossary, setGlossary] = useState([])
 
     useEffect(() => {
-        let loadVaga = {
-            idVaga: 5,
-            imgEmpresa: 'data:image/png;base64,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',
-            empresa: 'Colégio Modulo',
-            dtEncerramento: '17/10/2022',
-            salario: 2300.50,
-            cargo: 'Estágio em desenvolvimento',
-            descricao: 'Antes de tudo, é importante entender que o crescimento organizacional depende da busca por novos talentos. Como funcionário, você é responsável por fornecer oportunidades para que sua organização cresça. Isso significa promover os sucessos de sua equipe para membros novos e existentes. Você também precisará encontrar maneiras de resolver os problemas dos membros e documentar as ações de cada membro no trabalho. Ao desenvolver todos em sua equipe, você ajudará todos a ter sucesso, o que, por sua vez, ajudará sua organização a prosperar.',
-            hardSkills: ['Java', 'Oracle DB', 'HTML', 'CSS3', 'JavaScript'],
-            vagas: 2,
-            match: 70
+        buscarVaga()
+
+        fetch(`${baseUrl()}/skill/glossary`, {
+            method: 'GET'
+        })
+            .then(async res => {
+                if (res.ok) {
+                    let json = await res.json()
+                    setGlossary(json)
+                }
+            })
+
+        if (userLogado.tipo === 'candidato')
+            buscaPerfil()
+    }, [])
+
+    useEffect(() => {
+        const descricao = document.getElementById('html-descricao')
+        if (descricao != null)
+            descricao.innerHTML = vaga?.descricao.replaceAll('\n', '<br/>')
+    }, [vaga])
+
+    function buscarVaga() {
+        fetch(`${baseUrl()}/vaga/${idVaga}`, {
+            method: 'GET'
+        })
+            .then(async res => {
+                if (res.ok) {
+                    let vaga = await res.json()
+                    setVaga(vaga)
+                }
+            })
+    }
+
+    function editarHandler(e) {
+        e.preventDefault()
+        const form = e.target
+
+        const data = {
+            id: idVaga,
+            cargo: form.querySelector('#cargo').value,
+            qtdVagas: form.querySelector('#qtd-vagas').value,
+            salario: form.querySelector('#salario').value,
+            dataEncerramento: form.querySelector('#dtEncerramento').value.split('-').reverse().join('/'),
+            descricao: form.querySelector('#descricao').value,
         }
 
-        setVaga(loadVaga)
-    }, [])
+        fetch(`${baseUrl()}/vaga`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+            .then(async res => {
+                if (res.ok) {
+                    setModalEditarOpen(false)
+                    buscarVaga()
+                }
+            })
+    }
+
+    function removerHandler() {
+        fetch(`${baseUrl()}/vaga/${idVaga}`, {
+            method: 'DELETE'
+        })
+            .then(async res => {
+                if (res.ok) {
+                    setModalRemoverOpen(false)
+                    window.location.replace('/vagas')
+                }
+            })
+    }
+
+    function adicionarSkillHandler(e) {
+        e.preventDefault()
+        const form = e.target
+
+        const data = {
+            id: form.querySelector('#input-hard-skill').value,
+            nivel: form.querySelector('#nivel-hard-skill').value,
+            tipo: 'H'
+        }
+
+        fetch(`${baseUrl()}/vaga/${idVaga}/skill`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+            .then(async res => {
+                if (res.ok) {
+                    setModalSkillOpen(false)
+                    buscarVaga()
+                }
+            })
+    }
+
+    function removerSkillHandler(id) {
+        fetch(`${baseUrl()}/vaga/${idVaga}/skill/${id}`, {
+            method: 'DELETE'
+        })
+            .then(async res => {
+                if (res.ok) {
+                    setModalSkillOpen(false)
+                    buscarVaga()
+                }
+            })
+    }
+
+    function buscaPerfil() {
+        fetch(`${baseUrl()}/candidato/perfil/${userLogado.id}`, {
+            method: 'GET'
+        })
+            .then(async res => {
+                if (res.ok) {
+                    const json = await res.json()
+
+                    setUserCandidato(json);
+                }
+                else
+                    setUserCandidato(null)
+            })
+    }
+
+    function calcularMatch() {
+
+        const candidatoSkills = userCandidato?.skills
+        const vagaSkills = vaga?.skillsDesejadas
+
+        if (vagaSkills?.length > 0) {
+
+            let pontosPossiveis = vagaSkills?.length * 100
+            let pontosFeitos = 0
+
+            vagaSkills?.forEach(skill => {
+                for (let index = 0; index < candidatoSkills?.length; index++) {
+
+                    if (candidatoSkills[index].id === skill.id) {
+                        pontosFeitos += 50
+
+                        if (candidatoSkills[index].nivel >= skill.nivel)
+                            pontosFeitos += 50
+                    }
+                }
+            })
+
+            let porcentagem = Math.round((pontosFeitos * 100) / pontosPossiveis)
+
+            if (porcentagem < 0)
+                porcentagem = 0
+            else if (porcentagem > 100)
+                porcentagem = 100
+
+
+            return porcentagem
+        }
+
+        return 100
+    }
 
     function corMatch(match) {
         if (match <= 40) {
@@ -52,6 +194,29 @@ function Vaga() {
         }
     }
 
+    function realizarCandidaturaHandler() {
+        const data = {
+            candidato: {
+                idCandidato: userLogado.id
+            },
+            vaga: {
+                id: idVaga
+            }
+        }
+
+        fetch(`${baseUrl()}/candidatura`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+            .then(async res => {
+                if (res.ok) {
+                    setModalSucessoOpen(true)
+                    buscarVaga()
+                }
+            })
+    }
+
     return (
         <>
             <Header />
@@ -59,65 +224,226 @@ function Vaga() {
             <main className="container">
                 <div className="vaga">
 
-                    <div>
-                        <img src={vaga.imgEmpresa} alt="Logo" />
-                        <h1>{vaga.empresa}</h1>
-                    </div>
+                    {
+                        vaga != null &&
+                        <>
+                            <div>
+                                <img src={`data:image/png;base64,${vaga?.empresa?.fotoEmpresa}`} alt="Logo" />
+                                <h1>{vaga?.empresa.nome}</h1>
+                            </div>
 
-                    <p>
-                        <span>Match Level: </span>
-                        <strong style={{ backgroundColor: corMatch(vaga.match) }}>
-                            {vaga.match}%
+                            {
+                                userLogado.tipo === 'candidato'
+                                    ? <p>
+                                        <span>Match Level: </span>
+                                        <strong style={{ backgroundColor: corMatch(vaga?.match) }}>
+                                            {calcularMatch()}%
+                                        </strong>
+                                    </p>
+                                    : <></>
+                            }
+
+                            <p>
+                                <span>Inscrição até: </span> {vaga.dataEncerramento}
+                            </p>
+
+                            <p>
+                                <span>Salário: </span> R${vaga.salario.toFixed(2)}
+                            </p>
+
+                            <p>
+                                <span>Cargo: </span> {vaga.cargo}
+                            </p>
+
+                            <p>
+                                <span>Hard Skills: </span>
+                                {
+                                    vaga.skillsDesejadas.map((skill, index) => {
+                                        let aux = skill.descricao + ' (' + skill.nivel + ')'
+
+                                        return <React.Fragment key={index}>
+                                            {aux}
+                                            {
+                                                userLogado.tipo === 'empresa' &&
+                                                userLogado.id === vaga?.empresa.id &&
+                                                <RemoveItem className="centro" onClick={() => removerSkillHandler(skill.id)} style={{ position: 'static', transform: 'translateY(5%)' }}>
+                                                    <i className="fi fi-recycle-bin"></i>
+                                                </RemoveItem>
+                                            }
+                                            &emsp;
+                                        </React.Fragment>
+                                    })
+                                }
+                                {
+                                    vaga.skillsDesejadas.length === 0 ? 'Nenhuma' : ''
+                                }
+                            </p>
+
+                            <p>
+                                <span>Vagas Dísponiveis: </span>{vaga.qtdVagas}
+                            </p>
+
+                            <p>
+                                <span>Descrição: </span>
+                                <br />
+                                <span id='html-descricao'></span>
+                            </p>
+                        </>
+                    }
+
+                    {
+                        vaga == null &&
+                        <strong style={{ fontSize: '20px', fontWeight: 900, textAlign: "center", width: '100%' }}>
+                            Vaga não encontrada
                         </strong>
-                    </p>
+                    }
 
-                    <p>
-                        <span>Inscrição até: </span> {vaga.dtEncerramento}
-                    </p>
+                    {/* OPCOES CANDIDATO */}
+                    {
+                        userLogado.tipo === 'candidato' &&
+                        vaga !== null &&
+                        <div className="botoes">
+                            {
+                                vaga?.candidaturas?.filter(c => c.candidato.idCandidato === userLogado.id) < 1
+                                    ? <Botao tipo='cheio' cor='azul' onClick={realizarCandidaturaHandler}>
+                                        Me Candidatar
+                                    </Botao>
+                                    : <Botao tipo='cheio' cor='cinza' onClick={() => {}}>
+                                        Já Inscrito
+                                    </Botao>
+                            }
 
-                    <p>
-                        <span>Salário: </span> R${vaga.salario.toFixed(2)}
-                    </p>
+                            <Modal isOpen={modalSucessoOpen} setOpen={setModalSucessoOpen} titulo="Sucesso">
+                                <i className="fi fi-check-mark-circle candidatura-realizada-check"></i>
+                                <span>Candidaduta realizada!</span>
+                            </Modal>
+                        </div>
+                    }
 
-                    <p>
-                        <span>Cargo: </span> {vaga.cargo}
-                    </p>
+                    {/* OPCOES EMPRESA */}
+                    {
+                        userLogado.tipo === 'empresa' &&
+                        userLogado.id === vaga?.empresa.id &&
+                        <div className="botoes">
 
-                    <p>
-                        <span>Hard Skills: </span>
-                        {
-                            vaga.hardSkills.map((skill, index) => {
-                                let aux = skill + ', '
-                                if (index + 1 === vaga.hardSkills.length)
-                                    aux = aux.replace(',', '')
+                            {
+                                glossary.length > 0 &&
+                                <Botao tipo='vazio' cor='azul' onClick={() => setModalSkillOpen(true)}>
+                                    <i className="fi fi-plus-square"></i>
+                                    Skill
+                                </Botao>
+                            }
 
-                                return aux
-                            })
-                        }
-                    </p>
+                            <Botao tipo='vazio' onClick={() => setModalEditarOpen(true)}>
+                                <i className="fi fi-setting"></i>
+                                Editar
+                            </Botao>
 
-                    <p>
-                        <span>Vagas Dísponiveis: </span>{vaga.vagas}
-                    </p>
+                            <Botao tipo='cheio' cor='vermelho' onClick={() => setModalRemoverOpen(true)}>
+                                <i className="fi fi-close"></i>
+                                Remover
+                            </Botao>
 
-                    <p>
-                        <span>Descrição: </span>{vaga.descricao}
 
-                    </p>
+                            {/* EDITAR VAGA */}
+                            <Modal isOpen={modalEditarOpen} setOpen={setModalEditarOpen} titulo="Editar Vaga" afterOpen={() => { }}>
+                                <form action="" style={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }} onSubmit={editarHandler}>
 
-                    <div className="botoes">
-                        <Link to="/vagas">
-                            <Botao tipo='vazio'>Voltar</Botao>
-                        </Link>
-                        <Botao tipo='cheio' cor='azul' onClick={() => setModalOpen(true)}>
-                            Me Candidatar
-                        </Botao>
+                                    <div className="form__group col-12 cargo" style={{ marginTop: 0 }}>
+                                        <label htmlFor="cargo">Cargo</label>
+                                        <input type="text" required className="form__control" placeholder="Cargo" name="cargo" id="cargo" defaultValue={vaga?.cargo} />
+                                    </div>
+                                    <div className="form__group col-6 grupo">
+                                        <label htmlFor="qtd-vagas">Vagas Dísponiveis</label>
+                                        <input type="numeric" required className="form__control" placeholder="Vagas Dísponiveis" name="qtd-vagas" id="qtd-vagas" defaultValue={vaga?.qtdVagas} />
+                                    </div>
+                                    <div className="form__group col-6 money">
+                                        <label htmlFor="salario">Salário</label>
+                                        <input type="numeric" required className="form__control" placeholder="Salário" name="salario" id="salario" defaultValue={vaga?.salario.toFixed(2)} />
+                                    </div>
 
-                        <Modal isOpen={modalOpen} setOpen={setModalOpen} titulo="Sucesso">
-                            <i className="fi fi-check-mark-circle candidatura-realizada-check"></i>
-                            <span>Candidaduta realizada!</span>
-                        </Modal>
-                    </div>
+                                    <div className="form__group col-12 data">
+                                        <label htmlFor="dtEncerramento">Data de Encerramento</label>
+                                        <input type="date" className="form__control" required name="dtEncerramento" id="dtEncerramento" placeholder="dd/mm/aaaa"
+                                            defaultValue={vaga?.dataEncerramento.split('/').reverse().join('-')} />
+                                    </div>
+
+                                    <div className="form__group col-12 mensagem">
+                                        <label htmlFor="descricao">Descrição</label>
+                                        <textarea type="area" name="descricao" required id="descricao" className="form__control" placeholder="Descrição" autoComplete="off"
+                                            defaultValue={vaga?.descricao}></textarea>
+                                    </div>
+
+
+                                    <div className="botoes">
+                                        <Botao tipo='vazio' cor='azul'>
+                                            Atualizar
+                                        </Botao>
+                                    </div>
+                                </form>
+                            </Modal>
+
+                            {/* REMOVER VAGA */}
+                            <Modal isOpen={modalRemoverOpen} setOpen={setModalRemoverOpen} titulo="Confirmação" afterOpen={() => { }}>
+                                <span>Deseja realmente remover a vaga? Essa ação é permanente e não será possível acessar as candidaturas da vaga mais.</span>
+                                <div className="botoes">
+                                    <Botao tipo='vazio' cor='vermelho' onClick={removerHandler}>
+                                        Confirmar
+                                    </Botao>
+                                </div>
+                            </Modal>
+
+                            {/* MODAL DE ADICIONAR SKILL */}
+                            <Modal isOpen={modalSkillOpen} setOpen={setModalSkillOpen} titulo="Adicionar Skill" afterOpen={() => { }}>
+                                <form action="" style={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }} onSubmit={adicionarSkillHandler}>
+
+                                    <div id='secao-hard-skill' style={{ width: '100%' }}>
+                                        <div className="form__group col-12 busca" id='div-busca-hard-skill'>
+                                            <label htmlFor="busca-hard-skill">Buscar Hard Skill</label>
+                                            <input type="text" className="form__control" placeholder="Hard Skill" name="busca-hard-skill" id="busca-hard-skill"
+                                                onChange={(e) => setBuscaSkill(e.target.value)} />
+                                        </div>
+
+                                        <div className="form__group col-12" id='div-hard-skill'>
+                                            <label htmlFor="input-hard-skill">Selecionar Hard Skill</label>
+
+                                            <select className="form__control" required name="input-hard-skill" id="input-hard-skill">
+                                                {
+                                                    glossary.filter(skill => skill.descricao.toLowerCase().includes(buscaSkill.toLowerCase())).map(skill => (
+                                                        <option value={skill.id} key={skill.id}>{skill.descricao}</option>
+                                                    ))
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div className="form__group col-12">
+                                            <label htmlFor="nivel-hard-skill">Nível da Hard Skill</label>
+
+                                            <select className="form__control" required name='nivel-hard-skill' id='nivel-hard-skill'>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div className="botoes">
+                                        <Botao tipo='vazio' cor='azul'>
+                                            Cadastrar
+                                        </Botao>
+                                    </div>
+
+                                </form>
+                            </Modal>
+                        </div>
+                    }
 
                 </div>
             </main>

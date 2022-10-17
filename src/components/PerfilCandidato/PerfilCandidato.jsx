@@ -32,10 +32,10 @@ function PerfilCandidato(props) {
 
 
     //ATUALIZAR PERFIL
-    const [sexo, setSexo] = useState(props.userPerfil.sexo)
+    const [sexo, setSexo] = useState(props.userPerfil?.sexo)
 
     useEffect(() => {
-        setSexo(props.userPerfil.sexo)
+        setSexo(props.userPerfil.sexo ?? 'M')
     }, [modalEditarOpen])
 
     function pesquisacep(valor) {
@@ -426,18 +426,18 @@ function PerfilCandidato(props) {
                 <form action="" style={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }} onSubmit={atualizaCandidatoHandler}>
                     <div className="form__group col-12 nome" style={{ marginTop: 0 }}>
                         <label htmlFor="nome">Nome</label>
-                        <input type="text" className="form__control" placeholder="Nome Completo" required name="nome" id="nome" defaultValue={props.userPerfil.nome} />
+                        <input type="text" className="form__control" placeholder="Nome Completo" required name="nome" id="nome" defaultValue={props.userPerfil?.nome} />
                     </div>
 
                     <div className="form__group col-12 documento">
                         <label htmlFor="cpf">CPF</label>
                         <input type="numeric" className="form__control" placeholder="CPF" required name="cpf" id="cpf" maxLength={14}
-                            onChange={(e) => { IMask(e.target, { mask: '000.000.000-00' }) }} defaultValue={props.userPerfil.cpf} />
+                            onChange={(e) => { IMask(e.target, { mask: '000.000.000-00' }) }} defaultValue={props.userPerfil?.cpf} />
                     </div>
 
                     <div className="form__group col-12 documento">
                         <label htmlFor="rg">RG</label>
-                        <input type="numeric" className="form__control" placeholder="RG" required name="rg" id="rg" maxLength={12} defaultValue={props.userPerfil.rg} />
+                        <input type="numeric" className="form__control" placeholder="RG" required name="rg" id="rg" maxLength={12} defaultValue={props.userPerfil?.rg} />
                     </div>
 
                     <div className="form__group col-6">
@@ -445,12 +445,12 @@ function PerfilCandidato(props) {
 
                         <div className="radio__group">
                             <div>
-                                <input type="radio" name="sexo" id="masculino" defaultChecked={props.userPerfil.sexo === 'M'} required onClick={() => setSexo('M')} />
+                                <input type="radio" name="sexo" id="masculino" defaultChecked={props.userPerfil?.sexo === 'M'} required onClick={() => setSexo('M')} />
                                 <label htmlFor="masculino">Masculino</label>
                             </div>
 
                             <div>
-                                <input type="radio" name="sexo" id="feminino" defaultChecked={props.userPerfil.sexo === 'F'} onClick={() => setSexo('F')} />
+                                <input type="radio" name="sexo" id="feminino" defaultChecked={props.userPerfil?.sexo === 'F'} onClick={() => setSexo('F')} />
                                 <label htmlFor="feminino">Feminino</label>
                             </div>
                         </div>
@@ -459,7 +459,7 @@ function PerfilCandidato(props) {
                     <div className="form__group col-12">
                         <label htmlFor="cpf">Escolaridade</label>
 
-                        <select className="form__control" required name='escolaridade' id='escolaridade' defaultValue={props.userPerfil.escolaridade}>
+                        <select className="form__control" required name='escolaridade' id='escolaridade' defaultValue={props.userPerfil?.escolaridade}>
                             <option value="Fundamental Completo">Fundamental Completo</option>
                             <option value="Médio Incompleto">Médio Incompleto</option>
                             <option value="Médio Completo">Médio Completo</option>
@@ -470,18 +470,18 @@ function PerfilCandidato(props) {
 
                     <div className="form__group col-12 documento">
                         <label htmlFor="ocupacao">Ocupação Atual</label>
-                        <input type="text" className="form__control" placeholder="Ocupação Atual" name="ocupacao" id="ocupacao" defaultValue={props.userPerfil.atuacao} />
+                        <input type="text" className="form__control" placeholder="Ocupação Atual" name="ocupacao" id="ocupacao" defaultValue={props.userPerfil?.atuacao} />
                     </div>
 
                     <div className="form__group col-12 data">
                         <label htmlFor="cpf">Data de Nascimento</label>
                         <input type="date" className="form__control" required name="dtNascimento" id="dtNascimento"
-                            placeholder="dd/mm/aaaa" defaultValue={props.userPerfil.dataNascimento.split('/').reverse().join('-')} />
+                            placeholder="dd/mm/aaaa" defaultValue={props.userPerfil?.dataNascimento.split('/').reverse().join('-')} />
                     </div>
 
                     <div className="form__group col-6 endereco">
                         <label htmlFor="cep">CEP</label>
-                        <input type="numeric" className="form__control" placeholder="00000-000" required name="cep" id="cep" defaultValue={props.userPerfil.endereco.cep}
+                        <input type="numeric" className="form__control" placeholder="00000-000" required name="cep" id="cep" defaultValue={props.userPerfil?.endereco.cep}
                             onChange={(e) => {
                                 IMask(e.target, { mask: '00000-000' })
                                 let cep = e.target.value
@@ -494,36 +494,36 @@ function PerfilCandidato(props) {
 
                     <div className="form__group col-6 endereco">
                         <label htmlFor="uf">UF</label>
-                        <input type="text" className="form__control" placeholder="UF" required name="uf" id="uf" readOnly defaultValue={props.userPerfil.endereco.uf} />
+                        <input type="text" className="form__control" placeholder="UF" required name="uf" id="uf" readOnly defaultValue={props.userPerfil?.endereco.uf} />
                     </div>
 
                     <div className="form__group col-12 endereco">
                         <label htmlFor="rua">Rua</label>
-                        <input type="text" className="form__control" placeholder="Rua" required name="logradouro" id="rua" defaultValue={props.userPerfil.endereco.logradouro}
+                        <input type="text" className="form__control" placeholder="Rua" required name="logradouro" id="rua" defaultValue={props.userPerfil?.endereco.logradouro}
                             readOnly />
                     </div>
 
                     <div className="form__group col-12 endereco">
                         <label htmlFor="bairro">Bairro</label>
-                        <input type="text" className="form__control" placeholder="Bairro" required name="bairro" id="bairro" defaultValue={props.userPerfil.endereco.bairro}
+                        <input type="text" className="form__control" placeholder="Bairro" required name="bairro" id="bairro" defaultValue={props.userPerfil?.endereco.bairro}
                             readOnly />
                     </div>
 
                     <div className="form__group col-12 endereco">
                         <label htmlFor="cidade">Cidade</label>
-                        <input type="text" className="form__control" placeholder="Cidade" required name="cidade" id="cidade" defaultValue={props.userPerfil.endereco.cidade}
+                        <input type="text" className="form__control" placeholder="Cidade" required name="cidade" id="cidade" defaultValue={props.userPerfil?.endereco.cidade}
                             readOnly />
                     </div>
 
                     <div className="form__group col-12 endereco">
                         <label htmlFor="referencia">Ponto de Referência</label>
-                        <input type="text" className="form__control" placeholder="Ponto de Referência" name="referencia" defaultValue={props.userPerfil.endereco.complemento}
+                        <input type="text" className="form__control" placeholder="Ponto de Referência" name="referencia" defaultValue={props.userPerfil?.endereco.complemento}
                             id="referencia" />
                     </div>
 
                     <div className="form__group col-6 endereco">
                         <label htmlFor="numero">Número</label>
-                        <input type="numeric" className="form__control" placeholder="Número" required name="numero" id="numero" maxLength={9} defaultValue={props.userPerfil.endereco.numero}
+                        <input type="numeric" className="form__control" placeholder="Número" required name="numero" id="numero" maxLength={9} defaultValue={props.userPerfil?.endereco.numero}
                             onChange={(e) => {
                                 IMask(e.target, { mask: new RegExp(/^[0-9]*$/) })
                             }} />
@@ -532,7 +532,7 @@ function PerfilCandidato(props) {
                     <div className="form__group col-12 email">
                         <label htmlFor="email">Seu Login</label>
                         <input type="email" className="form__control" placeholder="Email" required name="email" id="email" readOnly
-                            defaultValue={props.userPerfil.usuario.login} />
+                            defaultValue={props.userPerfil?.usuario.login} />
                     </div>
 
                     <div className="form__group col-12 senha">

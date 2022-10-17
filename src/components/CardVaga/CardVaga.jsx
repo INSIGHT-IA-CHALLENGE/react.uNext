@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getUserLogado } from '../../auth/auth';
@@ -52,6 +53,40 @@ function CardVaga(props) {
         })
     }, [])
 
+    function calcularMatch() {
+
+        const vagaSkills = props.vaga?.skillsDesejadas
+        if (vagaSkills?.length > 0) {
+
+            let pontosPossiveis = vagaSkills?.length * 100
+            let pontosFeitos = 0
+
+            vagaSkills?.forEach(skill => {
+                for (let index = 0; index < props.candidatoSkills?.length; index++) {
+
+                    if (props.candidatoSkills[index].id === skill.id) {
+                        pontosFeitos += 50
+
+                        if (props.candidatoSkills[index].nivel >= skill.nivel)
+                            pontosFeitos += 50
+                    }
+                }
+            })
+
+            let porcentagem =  Math.round((pontosFeitos * 100)/pontosPossiveis)
+
+            if(porcentagem < 0)
+                porcentagem = 0
+            else if(porcentagem > 100)
+                porcentagem = 100
+
+
+            return porcentagem
+        }
+
+        return 100
+    }
+
     return (
         <Link to={`./${props.vaga.id}`}>
             <div className="vagas__vaga">
@@ -79,29 +114,30 @@ function CardVaga(props) {
                         {props.vaga.descricao.slice(0, 304)}
                         {props.vaga.descricao.length >= 304 ? '...' : ''}
                     </p>
-                    
+
                     <p>
                         <span>Hard Skills: </span>
                         {
                             props.vaga.skillsDesejadas.length === 0
-                            ? 'Nenhuma'
-                            : props.vaga.skillsDesejadas.map((skill, index) => {
-                                let aux = skill + ', '
-                                if (index + 1 === props.vaga.skillsDesejadas.length)
-                                    aux = aux.replace(',', '')
+                                ? 'Nenhuma'
+                                : props.vaga.skillsDesejadas.map((skill, index) => {
+                                    let aux = skill.descricao + ', '
+                                    if (index + 1 === props.vaga.skillsDesejadas.length)
+                                        aux = aux.replace(',', '')
 
-                                return aux
-                            })
+                                    return aux
+                                })
                         }
                     </p>
                 </div>
 
                 {
-                    userLogado === 'candidato' &&
+                    userLogado.tipo === 'candidato' &&
+                    props.userCandidato !== null &&
                     <div className="vaga__compatibilidade">
                         <h1>Match Level</h1>
                         <div className="compatibilidade__match">
-                            <div className="match__level" data-match={props.vaga.match}></div>
+                            <div className="match__level" data-match={calcularMatch()}></div>
                             <div className="match__brilho"></div>
                         </div>
                     </div>

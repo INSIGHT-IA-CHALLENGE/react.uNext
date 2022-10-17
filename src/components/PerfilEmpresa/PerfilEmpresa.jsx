@@ -22,21 +22,21 @@ function PerfilEmpresa(props) {
         const form = e.target
 
         const data = {
-            id: props.userPerfil.id,
+            id: props.userPerfil?.id,
             nome: form.querySelector('#nome').value,
             razaoSocial: form.querySelector('#razaoSocial').value,
             cnpj: form.querySelector('#cnpj').value,
             atuacao: form.querySelector('#atuacao').value,
             descricao: form.querySelector('#descricao').value?.replaceAll('\n', '<br/>'),
             usuario: {
-                id: props.userPerfil.usuario.id,
+                id: props.userPerfil?.usuario.id,
                 senha: form.querySelector('#nova-senha').value == ''
-                    ? props.userPerfil.usuario.senha
+                    ? props.userPerfil?.usuario.senha
                     : form.querySelector('#nova-senha').value
             }
         }
 
-        fetch(`${baseUrl()}/empresa/perfil/${props.userPerfil.id}`, {
+        fetch(`${baseUrl()}/empresa/perfil/${props.userPerfil?.id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -51,8 +51,8 @@ function PerfilEmpresa(props) {
 
     useEffect(() => {
         const descricao = document.getElementById('descricao-perfil')
-        descricao.innerHTML = props.userPerfil.descricao ?? 'Sem descrição'
-    }, [props.userPerfil.descricao])
+        descricao.innerHTML = props.userPerfil?.descricao ?? 'Sem descrição'
+    }, [props.userPerfil?.descricao])
 
 
 
@@ -132,7 +132,7 @@ function PerfilEmpresa(props) {
             cep: form.querySelector('#cep').value,
         }
 
-        fetch(`${baseUrl()}/empresa/${props.userPerfil.id}/endereco`, {
+        fetch(`${baseUrl()}/empresa/${props.userPerfil?.id}/endereco`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -166,7 +166,7 @@ function PerfilEmpresa(props) {
                 <>
                     <div className="perfil__header">
                         <div className='foto'>
-                            <img src={props.userPerfil.fotoEmpresa ? `data:image/png;base64,${props.userPerfil.fotoEmpresa}` : '/images/user.png'} alt="Foto User" id='ft-perfil' />
+                            <img src={props.userPerfil?.fotoEmpresa ? `data:image/png;base64,${props.userPerfil?.fotoEmpresa}` : '/images/user.png'} alt="Foto User" id='ft-perfil' />
                             {
                                 props.donoPerfil &&
                                 <>
@@ -178,10 +178,10 @@ function PerfilEmpresa(props) {
 
 
                         <div>
-                            <h1>{props.userPerfil.nome}</h1>
-                            <h3>{props.userPerfil.razaoSocial}</h3>
-                            <h3>{props.userPerfil.atuacao ?? ''}</h3>
-                            <h3>{props.userPerfil.cnpj}</h3>
+                            <h1>{props.userPerfil?.nome}</h1>
+                            <h3>{props.userPerfil?.razaoSocial}</h3>
+                            <h3>{props.userPerfil?.atuacao ?? ''}</h3>
+                            <h3>{props.userPerfil?.cnpj}</h3>
                         </div>
                     </div>
 
@@ -191,7 +191,7 @@ function PerfilEmpresa(props) {
                         </div>
                     </PerfilConteudo>
 
-                    <PerfilConteudo enderecos={props.userPerfil.enderecos} titulo={"Localidades"} donoPerfil={props.donoPerfil} remover={removerEnderecoHandler}>
+                    <PerfilConteudo enderecos={props.userPerfil?.enderecos} titulo={"Localidades"} donoPerfil={props.donoPerfil} remover={removerEnderecoHandler}>
                         {
                             props.donoPerfil &&
                             <AddItem onClick={() => setModalEnderecoOpen(true)}>
@@ -234,34 +234,34 @@ function PerfilEmpresa(props) {
                 <form action="" style={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }} onSubmit={editarPerfilHandler}>
                     <div className="form__group col-12 empresa" style={{ marginTop: 0 }}>
                         <label htmlFor="nome">Nome</label>
-                        <input type="text" className="form__control" placeholder="Nome Completo" required name="nome" id="nome" defaultValue={props.userPerfil.nome} />
+                        <input type="text" className="form__control" placeholder="Nome Completo" required name="nome" id="nome" defaultValue={props.userPerfil?.nome} />
                     </div>
 
                     <div className="form__group col-12 empresa">
                         <label htmlFor="razaoSocial">Razão Social</label>
-                        <input type="text" className="form__control" placeholder="Razão Social" required name="razaoSocial" id="razaoSocial" defaultValue={props.userPerfil.razaoSocial} />
+                        <input type="text" className="form__control" placeholder="Razão Social" required name="razaoSocial" id="razaoSocial" defaultValue={props.userPerfil?.razaoSocial} />
                     </div>
 
                     <div className="form__group col-12 documento">
                         <label htmlFor="cnpj">CNPJ</label>
-                        <input type="numeric" className="form__control" placeholder="CNPJ" required name="cnpj" id="cnpj" defaultValue={props.userPerfil.cnpj} />
+                        <input type="numeric" className="form__control" placeholder="CNPJ" required name="cnpj" id="cnpj" defaultValue={props.userPerfil?.cnpj} />
                     </div>
 
                     <div className="form__group col-12 empresa">
                         <label htmlFor="razaoSocial">Atuação</label>
-                        <input type="text" className="form__control" placeholder="Atuação" name="atuacao" id="atuacao" defaultValue={props.userPerfil.atuacao} />
+                        <input type="text" className="form__control" placeholder="Atuação" name="atuacao" id="atuacao" defaultValue={props.userPerfil?.atuacao} />
                     </div>
 
                     <div className="form__group col-12 mensagem">
                         <label htmlFor="mensagem">Descrição</label>
                         <textarea type="area" name="descricao" id="descricao" className="form__control" placeholder="Descrição" autoComplete="off"
-                            defaultValue={props.userPerfil.descricao?.replaceAll('<br/>', '\n')}></textarea>
+                            defaultValue={props.userPerfil?.descricao?.replaceAll('<br/>', '\n')}></textarea>
                     </div>
 
                     <div className="form__group col-12 email">
                         <label htmlFor="email">Seu Login</label>
                         <input type="email" className="form__control" placeholder="Email" required name="email" id="email" readOnly
-                            defaultValue={props.userPerfil.usuario.login} />
+                            defaultValue={props.userPerfil?.usuario.login} />
                     </div>
 
                     <div className="form__group col-12 senha">
