@@ -2,10 +2,10 @@
 export function baseUrl() {
     const host = window.location.hostname
 
-    if (host === "localhost")
-        return "http://localhost:8080/ApiUnext/rest"
+    if (host.includes('unext'))
+        return "https://api-unext.herokuapp.com/rest"
     else
-        return "https://api-unext.herokuapp.com/"
+        return "http://localhost:8080/ApiUnext/rest"
 }
 
 export async function logar(user) {
@@ -47,11 +47,11 @@ export function validaLogin() {
     }
 }
 
-export function getUserLogado(){
-    
-    if(validaLogin())
+export function getUserLogado() {
+
+    if (validaLogin())
         return JSON.parse(localStorage.getItem('user-logado'))
-    else{
+    else {
         deslogar()
         window.location.replace('/login')
     }
