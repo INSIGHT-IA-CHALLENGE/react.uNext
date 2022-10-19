@@ -153,6 +153,22 @@
 
 .form__group.money::before {
     content: "\e999";
+
+}
+.form__group.contato::before {
+    content:"\e977";
+}
+
+.form__group.mensagem::before {
+    content: "\ea53";
+}
+
+.form__group.cargo::before {
+    content:"\ea45";
+}
+
+.form__group.grupo::before {
+    content:"\e9dc";
 }
 
 input[type="date"]::-webkit-inner-spin-button,
@@ -199,6 +215,11 @@ select.form__control > option{
 }
 
 input[type='text']:read-only {
+    background-color: var(--cinza2);
+    pointer-events: none;
+}
+
+input[type='email']:read-only {
     background-color: var(--cinza2);
     pointer-events: none;
 }

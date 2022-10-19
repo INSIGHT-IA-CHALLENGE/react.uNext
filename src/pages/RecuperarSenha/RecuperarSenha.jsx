@@ -1,7 +1,15 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { validaLogin } from '../../auth/auth';
 
 function RecuperarSenha() {
+
+    useEffect(() => {
+        if (validaLogin())
+            window.location.replace('/vagas')
+    }, [])
+
     return (
         <main className='main-login'>
             <form action="#" className="form-login">
@@ -17,7 +25,7 @@ function RecuperarSenha() {
                     <input type="email" className="form__control" placeholder="Email" required name="email" id="email" />
                 </div>
 
-                <div className="form__group col-12 alert erro">Email não encontrado.</div>
+                {/* <div className="form__group col-12 alert erro">Email não encontrado.</div> */}
 
                 <div className="center">
                     <button type="submit" className="form__control">Recuperar</button>

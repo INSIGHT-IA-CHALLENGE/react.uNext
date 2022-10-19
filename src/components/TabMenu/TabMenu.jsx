@@ -2,8 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './TabMenu.css'
 import '../../styles/Logado.css'
+import { getUserLogado } from '../../auth/auth';
 
 function TabMenu(props) {
+
+    const userLogado = getUserLogado()
+
     return (
         <footer className="tabbar">
             <nav>
@@ -20,7 +24,7 @@ function TabMenu(props) {
                     <Link to="/notificacoes">
                         <li className={`notificacoes-icon ${props.tab === 'notificacoes'? 'ativo' : ''}`}></li>
                     </Link>
-                    <Link to="/perfil/0">
+                    <Link to={`/perfil/${userLogado.tipo}/${userLogado.id}`}>
                         <li className={`perfil-icon ${props.tab === 'perfil'? 'ativo' : ''}`}></li>
                     </Link>
                 </ul>

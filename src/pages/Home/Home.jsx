@@ -104,17 +104,6 @@ function Home() {
         })
 
         rolagem()
-
-
-
-        fetch('http://localhost:8080/LojaApp/rest/produto')
-            .then((response) => response.json())
-            .then((json) => {
-                console.log(json)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
     }, [])
 
     return (

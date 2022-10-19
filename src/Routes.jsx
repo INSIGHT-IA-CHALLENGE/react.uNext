@@ -28,7 +28,7 @@ export default function MyRoutes() {
         <Route path='/candidaturas' element={<Candidaturas />} />
         <Route path='/candidaturas/:idCandidatura' element={<Candidatura />} />
 
-        <Route path='/perfil/:idUser' element={<Perfil />} />
+        <Route path='/perfil/:tipoUser/:idUser' element={<Perfil />} />
 
         <Route path='/notificacoes' element={<Notificacoes />} />
 
