@@ -36,6 +36,9 @@ function Login() {
                         alert.innerText = "Ocorreu um problema ao logar. Tente novamente."
                 }
             })
+            .catch(erro => {
+                alert.innerText = "Ocorreu um problema ao logar. Tente novamente."
+            })
     }
 
     return (
