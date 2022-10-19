@@ -5,7 +5,7 @@ export function baseUrl() {
     if (host === "localhost")
         return "http://localhost:8080/ApiUnext/rest"
     else
-        return ""
+        return "https://api-unext.herokuapp.com/"
 }
 
 export async function logar(user) {
